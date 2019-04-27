@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.cnpm.doan2.R;
 import com.cnpm.doan2.models.User;
+import com.cnpm.doan2.models.UserLogin;
 import com.cnpm.doan2.service.RetrofitClient;
 import com.cnpm.doan2.service.UsersService;
 
@@ -95,7 +96,8 @@ public class LoginActivity extends AppCompatActivity {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         UsersService usersService = retrofit.create(UsersService.class);
-        Call<User> call = usersService.loginUser("admin","secret123");
+//        Call<User> call = usersService.loginUser("admin","secret123");
+        Call<User> call = usersService.loginUser(new UserLogin(userName,password));
         call.enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
