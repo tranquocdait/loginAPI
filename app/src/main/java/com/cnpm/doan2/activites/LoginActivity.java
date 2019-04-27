@@ -1,32 +1,35 @@
-package com.cnpm.doan2;
+package com.cnpm.doan2.activites;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-
-import android.content.Intent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
-import com.cnpm.doan2.models.Tourist;
-import com.cnpm.doan2.service.TouristService;
+import com.cnpm.doan2.R;
+import com.cnpm.doan2.models.User;
+import com.cnpm.doan2.service.RetrofitClient;
+import com.cnpm.doan2.service.UsersService;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class LoginActivity extends AppCompatActivity {
     private static final String TAG = "LoginActivity";
     private static final int REQUEST_SIGNUP = 0;
     private String baseUrl = "https://travel-now-app.herokuapp.com/";
-    private TouristService touristService;
+    private UsersService service;
     private String Au_Token;
 
     @BindView(R.id.input_email)
@@ -81,29 +84,34 @@ public class LoginActivity extends AppCompatActivity {
         progressDialog.setMessage("Authenticating...");
         progressDialog.show();
 
-        String userName = _emailText.getText().toString();
-        String password = _passwordText.getText().toString();
+        String userName = _emailText.getText().toString().trim();
+        String password = _passwordText.getText().toString().trim();
 
         // TODO: Implement your own authentication logic here.
-        Call<Tourist> loginCall = touristService.loginTourist(userName, password);
-        loginCall.enqueue(new Callback<Tourist>() {
+//        Call<User> call = RetrofitClient
+//                .getInstance().getApi().loginUser(userName, password);
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("https://travel-now-app.herokuapp.com/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        UsersService usersService = retrofit.create(UsersService.class);
+        Call<User> call = usersService.loginUser("admin","secret123");
+        call.enqueue(new Callback<User>() {
             @Override
-            public void onResponse(Call<Tourist> call, Response<Tourist> response) {
+            public void onResponse(Call<User> call, Response<User> response) {
                 if (!response.isSuccessful()) {
                     Toast.makeText(getBaseContext(), "Post's successful", Toast.LENGTH_LONG).show();
                     return;
                 }
-                Au_Token = response.headers().toString();
-                Tourist tourist = response.body();
+                User user=response.body();
+                Au_Token = user.getId().toString();
             }
 
             @Override
-            public void onFailure(Call<Tourist> call, Throwable t) {
+            public void onFailure(Call<User> call, Throwable t) {
                 Toast.makeText(getBaseContext(), "Login failure: " + t.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
-
-
         new android.os.Handler().postDelayed(
                 new Runnable() {
                     public void run() {
@@ -115,6 +123,7 @@ public class LoginActivity extends AppCompatActivity {
                         progressDialog.dismiss();
                     }
                 }, 3000);
+
     }
 
 
@@ -140,7 +149,6 @@ public class LoginActivity extends AppCompatActivity {
     public void onLoginSuccess() {
         _loginButton.setEnabled(true);
         this.finish();
-
     }
 
     public void onLoginFailed() {
@@ -151,24 +159,14 @@ public class LoginActivity extends AppCompatActivity {
 
     public boolean validate() {
         boolean valid = true;
-
         String email = _emailText.getText().toString();
         String password = _passwordText.getText().toString();
-
-//        if (email.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-//            _emailText.setError("enter a valid email address");
-//            valid = false;
-//        } else {
-//            _emailText.setError(null);
-//        }
-
         if (password.isEmpty() || password.length() < 4 || password.length() > 10) {
             _passwordText.setError("between 4 and 10 alphanumeric characters");
             valid = false;
         } else {
             _passwordText.setError(null);
         }
-
         return valid;
     }
 }
