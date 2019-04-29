@@ -5,19 +5,72 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.TextView;
 
 import com.cnpm.doan2.R;
+import com.cnpm.doan2.config.AdapterPlace;
+import com.cnpm.doan2.models.Image;
+import com.cnpm.doan2.models.Place;
+import com.cnpm.doan2.models.User;
+import com.cnpm.doan2.service.RetrofitClient;
+
+import java.sql.Array;
+import java.util.ArrayList;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 public class MainActivity extends AppCompatActivity {
+    private TextView textViewResult;
+    private ListView listView;
+    private AdapterPlace adapterPlace;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Intent intent = new Intent(this, LoginActivity.class);
-        startActivity(intent);
+        listView = (ListView) findViewById(R.id.id_places);
+        Call<List<Place>> call = RetrofitClient
+                .getInstance().getPlaceApi().getListPlace();
+        call.enqueue(new Callback<List<Place>>() {
+            @Override
+            public void onResponse(Call<List<Place>> call, Response<List<Place>> response) {
+                if (!response.isSuccessful()) {
+                    textViewResult.setText("Code:" + response.code());
+                    return;
+                }
+                final ArrayList<Place> placeList = (ArrayList)response.body();
+                adapterPlace=new AdapterPlace(MainActivity.this,placeList);
+                listView.setAdapter(adapterPlace);
+                listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        ArrayList<String> arrayListUrlImage=new ArrayList<String>();
+                        for (Image image:placeList.get(position).getImages()){
+                            arrayListUrlImage.add(image.getUrl());
+                        }
+                        Intent intent=new Intent(MainActivity.this,PlaceDetail.class);
+                        intent.putExtra("namePlace",placeList.get(position).getNamePlace());
+                        intent.putExtra("address",placeList.get(position).getAddress());
+                        intent.putExtra("about",placeList.get(position).getAbout());
+                        intent.putExtra("imageList", arrayListUrlImage);
+                        startActivity(intent);
+                    }
+                });
+            }
+            @Override
+            public void onFailure(Call<List<Place>> call, Throwable t) {
+                textViewResult.setText(t.getMessage());
+            }
+        });
     }
 
     @Override

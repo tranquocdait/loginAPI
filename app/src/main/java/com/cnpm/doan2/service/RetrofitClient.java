@@ -2,6 +2,8 @@ package com.cnpm.doan2.service;
 
 import android.util.Base64;
 
+import com.cnpm.doan2.models.Place;
+
 import java.io.IOException;
 
 import okhttp3.Interceptor;
@@ -34,7 +36,10 @@ public class RetrofitClient {
         return mInstance;
     }
 
-    public UsersService getApi() {
+    public UsersService getUserApi() {
         return retrofit.create(UsersService.class);
+    }
+    public PlaceService getPlaceApi() {
+        return retrofit.create(PlaceService.class);
     }
 }

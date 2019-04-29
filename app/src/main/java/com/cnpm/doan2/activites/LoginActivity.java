@@ -89,15 +89,15 @@ public class LoginActivity extends AppCompatActivity {
         String password = _passwordText.getText().toString().trim();
 
         // TODO: Implement your own authentication logic here.
-//        Call<User> call = RetrofitClient
-//                .getInstance().getApi().loginUser(userName, password);
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://travel-now-app.herokuapp.com/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-        UsersService usersService = retrofit.create(UsersService.class);
-//        Call<User> call = usersService.loginUser("admin","secret123");
-        Call<User> call = usersService.loginUser(new UserLogin(userName,password));
+        Call<User> call = RetrofitClient
+                .getInstance().getUserApi().loginUser(new UserLogin(userName,password));
+//        Retrofit retrofit = new Retrofit.Builder()
+//                .baseUrl("https://travel-now-app.herokuapp.com/")
+//                .addConverterFactory(GsonConverterFactory.create())
+//                .build();
+//        UsersService usersService = retrofit.create(UsersService.class);
+////        Call<User> call = usersService.loginUser("admin","secret123");
+//        Call<User> call = usersService.loginUser(new UserLogin(userName,password));
         call.enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
