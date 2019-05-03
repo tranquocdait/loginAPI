@@ -3,6 +3,7 @@ package com.cnpm.doan2.activites;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -23,6 +24,7 @@ public class PlaceDetail extends AppCompatActivity {
         TextView tvaddress=(TextView) findViewById(R.id.id_address_detail);
         TextView tvabout=(TextView) findViewById(R.id.id_aboutPlace_detail);
         ImageView tvimage=(ImageView) findViewById(R.id.id_imagePlace_detail);
+        ImageView tvimageback=(ImageView) findViewById(R.id.id_back);
 
         Intent intent=getIntent();
         String namePlace=intent.getStringExtra("namePlace").toString();
@@ -33,9 +35,15 @@ public class PlaceDetail extends AppCompatActivity {
         tvnamePlace.setText(namePlace);
         tvaddress.setText(address);
         tvabout.setText(about);
-
         Picasso.with(this).load(imageList.get(0)).into(tvimage);
 
-
+        tvimageback.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                Intent intent=new Intent(PlaceDetail.this,MainActivity.class);
+//                startActivity(intent);
+                finish();
+            }
+        });
     }
 }

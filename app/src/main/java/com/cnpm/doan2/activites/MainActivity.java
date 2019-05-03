@@ -1,7 +1,10 @@
 package com.cnpm.doan2.activites;
 
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -31,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView textViewResult;
     private ListView listView;
     private AdapterPlace adapterPlace;
+    public String Au_Token = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,25 +51,26 @@ public class MainActivity extends AppCompatActivity {
                     textViewResult.setText("Code:" + response.code());
                     return;
                 }
-                final ArrayList<Place> placeList = (ArrayList)response.body();
-                adapterPlace=new AdapterPlace(MainActivity.this,placeList);
+                final ArrayList<Place> placeList = (ArrayList) response.body();
+                adapterPlace = new AdapterPlace(MainActivity.this, placeList);
                 listView.setAdapter(adapterPlace);
                 listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        ArrayList<String> arrayListUrlImage=new ArrayList<String>();
-                        for (Image image:placeList.get(position).getImages()){
+                        ArrayList<String> arrayListUrlImage = new ArrayList<String>();
+                        for (Image image : placeList.get(position).getImages()) {
                             arrayListUrlImage.add(image.getUrl());
                         }
-                        Intent intent=new Intent(MainActivity.this,PlaceDetail.class);
-                        intent.putExtra("namePlace",placeList.get(position).getNamePlace());
-                        intent.putExtra("address",placeList.get(position).getAddress());
-                        intent.putExtra("about",placeList.get(position).getAbout());
+                        Intent intent = new Intent(MainActivity.this, PlaceDetail.class);
+                        intent.putExtra("namePlace", placeList.get(position).getNamePlace());
+                        intent.putExtra("address", placeList.get(position).getAddress());
+                        intent.putExtra("about", placeList.get(position).getAbout());
                         intent.putExtra("imageList", arrayListUrlImage);
                         startActivity(intent);
                     }
                 });
             }
+
             @Override
             public void onFailure(Call<List<Place>> call, Throwable t) {
                 textViewResult.setText(t.getMessage());
@@ -76,7 +81,13 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+//        Intent intent = getIntent();
+//        if (intent != null) {
+//            Au_Token = intent.getStringExtra("Au_Token").toString();
+//        }
+//        if (Au_Token == null)
+            getMenuInflater().inflate(R.menu.menu_main, menu);
+//        else getMenuInflater().inflate(R.menu.menu_account, menu);
         return true;
     }
 
@@ -90,8 +101,42 @@ public class MainActivity extends AppCompatActivity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
+        } else if (id == R.id.action_exit) {
+            alertExit();
+            return true;
+        } else if (id == R.id.action_login) {
+            loginView();
+            return true;
+        } else if (id == R.id.action_account) {
+            return true;
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void alertExit() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+        builder.setTitle("Announcement");
+        builder.setMessage("Would you exit?");
+        builder.setIcon(R.drawable.dauchamhoi);
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                finish();
+                System.exit(0);
+            }
+        });
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+        builder.show();
+    }
+
+    public void loginView() {
+        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+        startActivity(intent);
     }
 }
