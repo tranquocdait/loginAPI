@@ -4,6 +4,8 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -35,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
     private ListView listView;
     private AdapterPlace adapterPlace;
     public String Au_Token = null;
+    private BottomNavigationView navigation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,6 +77,33 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<List<Place>> call, Throwable t) {
                 textViewResult.setText(t.getMessage());
+            }
+        });
+        navigation = findViewById(R.id.navigation);
+        navigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.navigation_home:
+                       // viewPager.setCurrentItem(0);
+
+                        return true;
+                    case R.id.navigation_category:
+                       // viewPager.setCurrentItem(1);
+                        return true;
+                    case R.id.navigation_video:
+                     //   viewPager.setCurrentItem(2);
+                        return true;
+                    case R.id.navigation_favorite:
+                     //   viewPager.setCurrentItem(3);
+                        return true;
+                    case R.id.navigation_profile:
+                      //  viewPager.setCurrentItem(4);
+                        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                        startActivity(intent);
+                        return true;
+                }
+                return false;
             }
         });
     }

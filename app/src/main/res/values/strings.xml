@@ -6,4 +6,11 @@
     <string name="action_exit">Exit</string>
     <string name="action_login">Login</string>
     <string name="title_activity_login">LoginActivity</string>
+
+    <!--bottom navigation title-->
+    <string name="title_nav_home">Home</string>
+    <string name="title_nav_category">Category</string>
+    <string name="title_nav_video">Video</string>
+    <string name="title_nav_favorite">Favorite</string>
+    <string name="title_nav_profile">Profile</string>
 </resources>
