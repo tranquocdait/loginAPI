@@ -2,6 +2,7 @@ package com.cnpm.doan2.activites;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -32,6 +33,8 @@ public class LoginActivity extends AppCompatActivity {
     private String baseUrl = "https://travel-now-app.herokuapp.com/";
     private UsersService service;
     private String Au_Token;
+    private SharedPreferences sharedPreferences;
+//    private MyApplication myApplication;
 
     @BindView(R.id.input_email)
     EditText _emailText;
@@ -45,6 +48,12 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        sharedPreferences=getSharedPreferences("dataLogin",MODE_PRIVATE);
+        if(!"".equals(sharedPreferences.getString("Au_Token",""))) {
+            Intent intent = new Intent(LoginActivity.this, AccountActivity.class);
+               intent.putExtra("Au_Token", sharedPreferences.getString("Au_Token",Au_Token));
+            startActivity(intent);
+        }
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
 
@@ -150,8 +159,11 @@ public class LoginActivity extends AppCompatActivity {
 
     public void onLoginSuccess() {
         _loginButton.setEnabled(true);
+        SharedPreferences.Editor editor=sharedPreferences.edit();
+        editor.putString("Au_Token",Au_Token);
+        editor.commit();
         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-        intent.putExtra("Au_Token", Au_Token);
+     //   intent.putExtra("Au_Token", Au_Token);
         startActivity(intent);
   //      this.finish();
     }

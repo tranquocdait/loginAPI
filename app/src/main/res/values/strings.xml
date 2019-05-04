@@ -13,4 +13,14 @@
     <string name="title_nav_video">Video</string>
     <string name="title_nav_favorite">Favorite</string>
     <string name="title_nav_profile">Profile</string>
+
+    <!--profile-->
+    <string name="txt_profile_edit">EDIT</string>
+    <string name="txt_profile_welcome">Welcome!</string>
+    <string name="txt_profile_not_registered">Not registered?</string>
+    <string name="txt_profile_register_now">Register Now</string>
+    <string name="txt_profile_login">LOGIN</string>
+    <string name="txt_profile_logout">Logout</string>
+    <string name="updating_profile">Updating Profile</string>
+    <string name="waiting_message">Please wait&#8230;</string>
 </resources>

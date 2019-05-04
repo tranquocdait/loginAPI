@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
     private AdapterPlace adapterPlace;
     public String Au_Token = null;
     private BottomNavigationView navigation;
+//    MyApplication myApplication;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,22 +86,25 @@ public class MainActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.navigation_home:
-                       // viewPager.setCurrentItem(0);
+                        // viewPager.setCurrentItem(0);
 
                         return true;
                     case R.id.navigation_category:
-                       // viewPager.setCurrentItem(1);
+                        // viewPager.setCurrentItem(1);
                         return true;
                     case R.id.navigation_video:
-                     //   viewPager.setCurrentItem(2);
+                        //   viewPager.setCurrentItem(2);
                         return true;
                     case R.id.navigation_favorite:
-                     //   viewPager.setCurrentItem(3);
+                        //   viewPager.setCurrentItem(3);
                         return true;
                     case R.id.navigation_profile:
-                      //  viewPager.setCurrentItem(4);
-                        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-                        startActivity(intent);
+                        //  viewPager.setCurrentItem(4);
+//                        myApplication = MyApplication.getInstance();
+//                        if (myApplication.getIsLogin()) {
+                            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                            startActivity(intent);
+//                        }
                         return true;
                 }
                 return false;
@@ -116,7 +120,7 @@ public class MainActivity extends AppCompatActivity {
 //            Au_Token = intent.getStringExtra("Au_Token").toString();
 //        }
 //        if (Au_Token == null)
-            getMenuInflater().inflate(R.menu.menu_main, menu);
+        getMenuInflater().inflate(R.menu.menu_main, menu);
 //        else getMenuInflater().inflate(R.menu.menu_account, menu);
         return true;
     }

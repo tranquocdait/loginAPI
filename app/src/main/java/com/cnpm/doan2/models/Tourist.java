@@ -10,21 +10,13 @@ public class Tourist {
     @Expose
     private Integer id;
 
-    @SerializedName("userName")
-    @Expose
-    private String userName;
-
-    @SerializedName("password")
-    @Expose
-    private String password;
-
     @SerializedName("fullname")
     @Expose
     private String fullname;
 
-    @SerializedName("gender")
-    @Expose
-    private boolean gender;
+//    @SerializedName("gender")
+//    @Expose
+//    private boolean gender;
 
     @SerializedName("role")
     @Expose
@@ -34,7 +26,7 @@ public class Tourist {
     @Expose
     private String nationality;
 
-    @SerializedName("avatar")
+    @SerializedName("image")
     @Expose
     private Image avatar;
 
@@ -45,15 +37,22 @@ public class Tourist {
     public Tourist() {
     }
 
-    public Tourist(Integer id, String userName, String password, String fullname, boolean gender, String role, Image avatar, LocalDate birthDate) {
+    public Tourist(Integer id, String fullname, boolean gender, String role,String nationality, Image avatar, LocalDate birthDate) {
         this.id = id;
-        this.userName = userName;
-        this.password = password;
         this.fullname = fullname;
-        this.gender = gender;
+ //       this.gender = gender;
         this.role = role;
         this.avatar = avatar;
+        this.nationality=nationality;
 //        this.birthDate = birthDate;
+    }
+
+    public String getNationality() {
+        return nationality;
+    }
+
+    public void setNationality(String nationality) {
+        this.nationality = nationality;
     }
 
     public Integer getId() {
@@ -64,22 +63,6 @@ public class Tourist {
         this.id = id;
     }
 
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
     public String getFullname() {
         return fullname;
     }
@@ -88,13 +71,13 @@ public class Tourist {
         this.fullname = fullname;
     }
 
-    public boolean isGender() {
-        return gender;
-    }
-
-    public void setGender(boolean gender) {
-        this.gender = gender;
-    }
+//    public boolean isGender() {
+//        return gender;
+//    }
+//
+//    public void setGender(boolean gender) {
+//        this.gender = gender;
+//    }
 
     public String getRole() {
         return role;

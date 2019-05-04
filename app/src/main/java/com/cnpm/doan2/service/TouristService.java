@@ -17,18 +17,18 @@ public interface TouristService {
     @GET("tourists")
     Call<StatusTourist> getListTourist();
 
-    @PUT("tourists/{id}")
-    Call<StatusTourist> putProvince(@Part("id") Integer id);
+    @GET("tourists/{id}")
+    Call<StatusTourist> getTourist(@Part("id") int id);
 
     @POST("tourists")
-    Call<StatusTourist> postProvince();
+    Call<StatusTourist> postTourist();
 
     @PUT("tourists/{id}")
-    Call<StatusTourist> putProvince(@Part("id") Integer id, @Body RequestTourist tourist);
+    Call<StatusTourist> putTourist(@Part("id") Integer id, @Body RequestTourist tourist);
 
     @PUT("tourists/{id}")
-    Call<StatusTourist> putProvince(@Part("id") Integer id, @Body RequestChangeAvatar avatar);
+    Call<StatusTourist> putTourist(@Part("id") Integer id, @Body RequestChangeAvatar avatar);
 
     @DELETE("categories/{id}")
-    Call<StatusDelete> deleteProvince(@Part("id") Integer id);
+    Call<StatusDelete> deleteTourist(@Part("id") Integer id);
 }
