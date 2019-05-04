@@ -1,13 +1,11 @@
 package com.cnpm.doan2.models;
 
-
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.time.LocalDate;
-import java.util.Date;
 
-public class User {
+public class Tourist {
     @SerializedName("id")
     @Expose
     private Integer id;
@@ -32,34 +30,30 @@ public class User {
     @Expose
     private String role;
 
-//    @SerializedName("nationality")
-//    @Expose
-//    private String nationality;
+    @SerializedName("nationality")
+    @Expose
+    private String nationality;
 
-    //    @SerializedName("birthDate")
+    @SerializedName("avatar")
+    @Expose
+    private Image avatar;
+
+//    @SerializedName("birthDate")
 //    @Expose
 //    private LocalDate birthDate;
 
-    public User() {
-        super();
+    public Tourist() {
     }
 
-    public User(Integer id, String userName, String password, String fullname, boolean gender, LocalDate birthDate, String role) {
+    public Tourist(Integer id, String userName, String password, String fullname, boolean gender, String role, Image avatar, LocalDate birthDate) {
         this.id = id;
         this.userName = userName;
         this.password = password;
         this.fullname = fullname;
         this.gender = gender;
+        this.role = role;
+        this.avatar = avatar;
 //        this.birthDate = birthDate;
-        this.role = role;
-    }
-
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
     }
 
     public Integer getId() {
@@ -100,6 +94,22 @@ public class User {
 
     public void setGender(boolean gender) {
         this.gender = gender;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public Image getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(Image avatar) {
+        this.avatar = avatar;
     }
 
 //    public LocalDate getBirthDate() {

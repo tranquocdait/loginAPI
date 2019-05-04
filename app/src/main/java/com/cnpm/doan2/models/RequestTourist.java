@@ -1,17 +1,11 @@
 package com.cnpm.doan2.models;
 
-
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.time.LocalDate;
-import java.util.Date;
 
-public class User {
-    @SerializedName("id")
-    @Expose
-    private Integer id;
-
+public class RequestTourist {
     @SerializedName("userName")
     @Expose
     private String userName;
@@ -28,46 +22,24 @@ public class User {
     @Expose
     private boolean gender;
 
-    @SerializedName("role")
+    @SerializedName("birthDate")
     @Expose
-    private String role;
+    private LocalDate birthDate;
 
-//    @SerializedName("nationality")
-//    @Expose
-//    private String nationality;
+    @SerializedName("nationality")
+    @Expose
+    private String nationality;
 
-    //    @SerializedName("birthDate")
-//    @Expose
-//    private LocalDate birthDate;
-
-    public User() {
-        super();
+    public RequestTourist() {
     }
 
-    public User(Integer id, String userName, String password, String fullname, boolean gender, LocalDate birthDate, String role) {
-        this.id = id;
+    public RequestTourist(String userName, String password, String fullname, boolean gender, LocalDate birthDate, String nationality) {
         this.userName = userName;
         this.password = password;
         this.fullname = fullname;
         this.gender = gender;
-//        this.birthDate = birthDate;
-        this.role = role;
-    }
-
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
+        this.birthDate = birthDate;
+        this.nationality = nationality;
     }
 
     public String getUserName() {
@@ -102,11 +74,19 @@ public class User {
         this.gender = gender;
     }
 
-//    public LocalDate getBirthDate() {
-//        return birthDate;
-//    }
-//
-//    public void setBirthDate(LocalDate birthDate) {
-//        this.birthDate = birthDate;
-//    }
+    public LocalDate getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(LocalDate birthDate) {
+        this.birthDate = birthDate;
+    }
+
+    public String getNationality() {
+        return nationality;
+    }
+
+    public void setNationality(String nationality) {
+        this.nationality = nationality;
+    }
 }
