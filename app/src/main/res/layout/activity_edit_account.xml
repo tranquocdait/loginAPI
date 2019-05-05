@@ -59,8 +59,7 @@
 
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:passwordToggleEnabled="true">
+            android:layout_height="wrap_content">
 
             <EditText
                 android:id="@+id/edt_password"
@@ -76,8 +75,18 @@
             android:id="@+id/button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Button" />
+            android:layout_gravity="center"
+            android:background="@color/colorNavigation"
+            android:text="Update" />
 
     </LinearLayout>
+    <android.support.design.widget.BottomNavigationView
+        android:id="@+id/navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="?android:attr/windowBackground"
+        app:menu="@menu/navigation"
+        tools:layout_editor_absoluteX="171dp" />
 <!--</android.support.constraint.ConstraintLayout>-->
 </RelativeLayout>

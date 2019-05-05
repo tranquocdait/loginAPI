@@ -32,9 +32,9 @@ public class AccountActivity extends AppCompatActivity {
     TextView gender;
     TextView nationality;
 
-    private ListView post;
-    private ListView edit;
-    private ListView logout;
+    private TextView post;
+    private TextView edit;
+    private TextView logout;
     private BottomNavigationView navigation;
 
     @Override
@@ -45,6 +45,10 @@ public class AccountActivity extends AppCompatActivity {
         fullname = (TextView) findViewById(R.id.id_fullname);
         gender = (TextView) findViewById(R.id.id_gender);
         nationality = (TextView) findViewById(R.id.id_nationality);
+
+        post=(TextView) findViewById(R.id.id_post_account);
+        edit=(TextView) findViewById(R.id.id_edit_account);
+        logout=(TextView) findViewById(R.id.id_logout_account);
 
         Intent intent = getIntent();
         int id = Integer.parseInt(intent.getStringExtra("Au_Token"));
@@ -97,13 +101,14 @@ public class AccountActivity extends AppCompatActivity {
                 return false;
             }
         });
-        edit.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        edit.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            public void onClick(View v) {
                 Intent intent=new Intent(AccountActivity.this,EditAccount.class);
-                intent.putExtra("id",id);
+                intent.putExtra("id",tourist.getId());
                 intent.putExtra("fullname",tourist.getFullName());
-               // intent.putExtra("fullname",tourist.getFullName())
+               // intent.putExtra("fullname",tourist.getFullName());
+                startActivity(intent);
             }
         });
     }
