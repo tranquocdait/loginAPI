@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        listView = (ListView) findViewById(R.id.id_places);
+        listView = (ListView) findViewById(R.id.id_list);
         Call<List<Place>> call = RetrofitClient
                 .getInstance().getPlaceApi().getListPlace();
         call.enqueue(new Callback<List<Place>>() {

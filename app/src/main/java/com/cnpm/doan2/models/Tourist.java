@@ -10,9 +10,9 @@ public class Tourist {
     @Expose
     private Integer id;
 
-    @SerializedName("fullname")
+    @SerializedName("fullName")
     @Expose
-    private String fullname;
+    private String fullName;
 
 //    @SerializedName("gender")
 //    @Expose
@@ -22,9 +22,9 @@ public class Tourist {
     @Expose
     private String role;
 
-    @SerializedName("nationality")
-    @Expose
-    private String nationality;
+//    @SerializedName("nationality")
+//    @Expose
+//    private String nationality;
 
     @SerializedName("image")
     @Expose
@@ -39,21 +39,29 @@ public class Tourist {
 
     public Tourist(Integer id, String fullname, boolean gender, String role,String nationality, Image avatar, LocalDate birthDate) {
         this.id = id;
-        this.fullname = fullname;
+        this.fullName = fullname;
  //       this.gender = gender;
         this.role = role;
         this.avatar = avatar;
-        this.nationality=nationality;
+//        this.nationality=nationality;
 //        this.birthDate = birthDate;
     }
 
-    public String getNationality() {
-        return nationality;
+    public String getFullName() {
+        return fullName;
     }
 
-    public void setNationality(String nationality) {
-        this.nationality = nationality;
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
+
+//    public String getNationality() {
+//        return nationality;
+//    }
+//
+//    public void setNationality(String nationality) {
+//        this.nationality = nationality;
+//    }
 
     public Integer getId() {
         return id;
@@ -64,11 +72,11 @@ public class Tourist {
     }
 
     public String getFullname() {
-        return fullname;
+        return fullName;
     }
 
     public void setFullname(String fullname) {
-        this.fullname = fullname;
+        this.fullName = fullname;
     }
 
 //    public boolean isGender() {

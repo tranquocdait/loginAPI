@@ -22,11 +22,12 @@
     <!--</android.support.v4.widget.NestedScrollView>-->
 
     <ListView
-        android:id="@+id/id_places"
+        android:id="@+id/id_list"
         android:layout_width="match_parent"
         android:layout_height="728dp"
         tools:layout_editor_absoluteX="8dp"
         tools:layout_editor_absoluteY="3dp" />
+
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/navigation"
         android:layout_width="match_parent"

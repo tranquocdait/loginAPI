@@ -12,13 +12,14 @@ import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Part;
+import retrofit2.http.Path;
 
 public interface TouristService {
     @GET("tourists")
     Call<StatusTourist> getListTourist();
 
     @GET("tourists/{id}")
-    Call<StatusTourist> getTourist(@Part("id") int id);
+    Call<StatusTourist> getTourist(@Path("id") String id);
 
     @POST("tourists")
     Call<StatusTourist> postTourist();

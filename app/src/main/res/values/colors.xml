@@ -40,4 +40,6 @@
   <color name="colorArtBorder">#e2e2e2</color>
   <color name="colorOverlaySoft">#1A000000</color>
   <color name="colorOverlayDark">#33000000</color>
+
+  <color name="colorNavigation">#4aafff</color>
 </resources>
