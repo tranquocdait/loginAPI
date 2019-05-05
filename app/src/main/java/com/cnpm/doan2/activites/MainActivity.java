@@ -138,10 +138,8 @@ public class MainActivity extends AppCompatActivity {
         } else if (id == R.id.action_exit) {
             alertExit();
             return true;
-        } else if (id == R.id.action_login) {
-            loginView();
-            return true;
-        } else if (id == R.id.action_account) {
+        }
+        else if (id == R.id.action_account) {
             return true;
         }
 

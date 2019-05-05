@@ -37,7 +37,7 @@
     <!--navigation-->
     <style name="TextAppearance.AppCompat.Widget.ActionBar.Title" parent="@android:style/TextAppearance">
         <item name="android:textColor">@color/colorNavigation</item>
-        <item name="android:fontFamily">monospace</item>
+        <!--<item name="android:fontFamily">monospace</item>-->
     </style>
     ﻿
 

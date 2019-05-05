@@ -1,8 +1,13 @@
 package com.cnpm.doan2.activites;
 
 import android.content.Intent;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 
 import com.cnpm.doan2.R;
@@ -12,6 +17,7 @@ import com.cnpm.doan2.service.RetrofitClient;
 import com.squareup.picasso.Picasso;
 
 import android.content.Context;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import retrofit2.Call;
@@ -25,6 +31,11 @@ public class AccountActivity extends AppCompatActivity {
     TextView fullname;
     TextView gender;
     TextView nationality;
+
+    private ListView post;
+    private ListView edit;
+    private ListView logout;
+    private BottomNavigationView navigation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +67,43 @@ public class AccountActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<StatusTourist> call, Throwable t) {
+            }
+        });
+
+
+        navigation = findViewById(R.id.navigation);
+        navigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.navigation_home:
+                        // viewPager.setCurrentItem(0);
+                        Intent intent = new Intent(AccountActivity.this, MainActivity.class);
+                        startActivity(intent);
+                        return true;
+                    case R.id.navigation_category:
+                        // viewPager.setCurrentItem(1);
+                        return true;
+                    case R.id.navigation_video:
+                        //   viewPager.setCurrentItem(2);
+                        return true;
+                    case R.id.navigation_favorite:
+                        //   viewPager.setCurrentItem(3);
+                        return true;
+                    case R.id.navigation_profile:
+                        //  viewPager.setCurrentItem(4);
+                        return true;
+                }
+                return false;
+            }
+        });
+        edit.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent=new Intent(AccountActivity.this,EditAccount.class);
+                intent.putExtra("id",id);
+                intent.putExtra("fullname",tourist.getFullName());
+               // intent.putExtra("fullname",tourist.getFullName())
             }
         });
     }
