@@ -3,8 +3,11 @@ package com.cnpm.doan2.activites;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -19,21 +22,55 @@ import butterknife.ButterKnife;
 public class SignupActivity extends AppCompatActivity {
     private static final String TAG = "SignupActivity";
 
-    @BindView(R.id.input_name) EditText _nameText;
-    @BindView(R.id.input_address) EditText _addressText;
-    @BindView(R.id.input_email) EditText _emailText;
-    @BindView(R.id.input_mobile) EditText _mobileText;
-    @BindView(R.id.input_password) EditText _passwordText;
-    @BindView(R.id.input_reEnterPassword) EditText _reEnterPasswordText;
-    @BindView(R.id.btn_signup) Button _signupButton;
-    @BindView(R.id.link_login) TextView _loginLink;
+    @BindView(R.id.id_fullname_creat)
+    EditText _fullname;
+    @BindView(R.id.id_gerden_creat)
+    EditText _gerden;
+    @BindView(R.id.id_nationality_creat)
+    EditText _nationality;
+    @BindView(R.id.id_username_creat)
+    EditText _username;
+    @BindView(R.id.id_password_creat)
+    EditText _passwordText;
+    @BindView(R.id.id_reEnterPassword_creat)
+    EditText _reEnterPasswordText;
+    @BindView(R.id.btn_signup)
+    Button _signupButton;
+    @BindView(R.id.link_login)
+    TextView _loginLink;
+    private BottomNavigationView navigation;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
         ButterKnife.bind(this);
-
+        navigation = findViewById(R.id.navigation);
+        navigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.navigation_home:
+                        // viewPager.setCurrentItem(0);
+                        Intent intent = new Intent(SignupActivity.this, MainActivity.class);
+                        startActivity(intent);
+                        return true;
+                    case R.id.navigation_category:
+                        // viewPager.setCurrentItem(1);
+                        return true;
+                    case R.id.navigation_video:
+                        //   viewPager.setCurrentItem(2);
+                        return true;
+                    case R.id.navigation_favorite:
+                        //   viewPager.setCurrentItem(3);
+                        return true;
+                    case R.id.navigation_profile:
+                        //  viewPager.setCurrentItem(4);
+                        return true;
+                }
+                return false;
+            }
+        });
         _signupButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -69,10 +106,10 @@ public class SignupActivity extends AppCompatActivity {
         progressDialog.setMessage("Creating Account...");
         progressDialog.show();
 
-        String name = _nameText.getText().toString();
-        String address = _addressText.getText().toString();
-        String email = _emailText.getText().toString();
-        String mobile = _mobileText.getText().toString();
+        String fullname = _fullname.getText().toString();
+        String address = _gerden.getText().toString();
+        String nationality = _nationality.getText().toString();
+        String username = _username.getText().toString();
         String password = _passwordText.getText().toString();
         String reEnterPassword = _reEnterPasswordText.getText().toString();
 
@@ -106,40 +143,41 @@ public class SignupActivity extends AppCompatActivity {
     public boolean validate() {
         boolean valid = true;
 
-        String name = _nameText.getText().toString();
-        String address = _addressText.getText().toString();
-        String email = _emailText.getText().toString();
-        String mobile = _mobileText.getText().toString();
+        String fullname = _fullname.getText().toString();
+        String gender = _gerden.getText().toString();
+        String nationality = _nationality.getText().toString();
+        String username = _username.getText().toString();
         String password = _passwordText.getText().toString();
         String reEnterPassword = _reEnterPasswordText.getText().toString();
 
-        if (name.isEmpty() || name.length() < 3) {
-            _nameText.setError("at least 3 characters");
+        if (fullname.isEmpty() || fullname.length() < 3) {
+            _fullname.setError("at least 3 characters");
             valid = false;
         } else {
-            _nameText.setError(null);
+            _fullname.setError(null);
         }
 
-        if (address.isEmpty()) {
-            _addressText.setError("Enter Valid Address");
+        if (gender.isEmpty()) {
+            _gerden.setError("Enter Valid Address");
             valid = false;
         } else {
-            _addressText.setError(null);
+            _gerden.setError(null);
         }
 
 
-        if (email.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            _emailText.setError("enter a valid email address");
+//        if (email.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+        if (nationality.isEmpty()) {
+            _nationality.setError("enter a valid email address");
             valid = false;
         } else {
-            _emailText.setError(null);
+            _nationality.setError(null);
         }
 
-        if (mobile.isEmpty() || mobile.length()!=10) {
-            _mobileText.setError("Enter Valid Mobile Number");
+        if (username.isEmpty() || username.length() < 6) {
+            _username.setError("at least 3 characters");
             valid = false;
         } else {
-            _mobileText.setError(null);
+            _username.setError(null);
         }
 
         if (password.isEmpty() || password.length() < 4 || password.length() > 10) {

@@ -45,4 +45,7 @@ public class RetrofitClient {
     public TouristService getTouristApi() {
         return retrofit.create(TouristService.class);
     }
+    public CommentPlaceService getCommentPlaceApi() {
+        return retrofit.create(CommentPlaceService.class);
+    }
 }

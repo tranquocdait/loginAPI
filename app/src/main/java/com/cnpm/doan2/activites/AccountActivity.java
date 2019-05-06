@@ -1,6 +1,7 @@
 package com.cnpm.doan2.activites;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
@@ -36,9 +37,10 @@ public class AccountActivity extends AppCompatActivity {
     private TextView edit;
     private TextView logout;
     private BottomNavigationView navigation;
+    private SharedPreferences sharedPreferences;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account);
         imageView = (ImageView) findViewById(R.id.id_avatar);
@@ -46,26 +48,31 @@ public class AccountActivity extends AppCompatActivity {
         gender = (TextView) findViewById(R.id.id_gender);
         nationality = (TextView) findViewById(R.id.id_nationality);
 
-        post=(TextView) findViewById(R.id.id_post_account);
-        edit=(TextView) findViewById(R.id.id_edit_account);
-        logout=(TextView) findViewById(R.id.id_logout_account);
+        post = (TextView) findViewById(R.id.id_post_account);
+        edit = (TextView) findViewById(R.id.id_edit_account);
+        logout = (TextView) findViewById(R.id.id_logout_account);
 
         Intent intent = getIntent();
-        int id = Integer.parseInt(intent.getStringExtra("Au_Token"));
+        final String id = intent.getStringExtra("Au_Token");
         Call<StatusTourist> call = RetrofitClient
-                .getInstance().getTouristApi().getTourist("47");
+                .getInstance().getTouristApi().getTourist(id);
         call.enqueue(new Callback<StatusTourist>() {
             @Override
             public void onResponse(Call<StatusTourist> call, Response<StatusTourist> response) {
-                status = response.body().getStatus();
-                if (status.equals("success")) {
-                    tourist = response.body().getData();
-                    Picasso.with(getApplicationContext()).load(tourist.getAvatar().getUrl()).into(imageView);
-                    fullname.setText(tourist.getFullname());
+                if (response.isSuccessful()) {
+                    status = response.body().getStatus();
+                    if (status.equals("success")) {
+                        tourist = response.body().getData();
+                        Picasso.with(getApplicationContext()).load(tourist.getAvatar().getUrl()).into(imageView);
+                        fullname.setText(tourist.getFullname());
 //                    if (tourist.isGender()) gender.setText("Male");
 //                    else gender.setText("Male");
-                    gender.setText("Male");
-                    nationality.setText("Vietnamese");
+                        gender.setText(id);
+                        nationality.setText("Vietnamese");
+                    }
+                }
+                else{
+                    finish();
                 }
             }
 
@@ -104,10 +111,21 @@ public class AccountActivity extends AppCompatActivity {
         edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(AccountActivity.this,EditAccount.class);
-                intent.putExtra("id",tourist.getId());
-                intent.putExtra("fullname",tourist.getFullName());
-               // intent.putExtra("fullname",tourist.getFullName());
+                Intent intent = new Intent(AccountActivity.this, EditAccount.class);
+                intent.putExtra("id", tourist.getId());
+                intent.putExtra("fullname", tourist.getFullName());
+                // intent.putExtra("fullname",tourist.getFullName());
+                startActivity(intent);
+            }
+        });
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sharedPreferences = getSharedPreferences("dataLogin", MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.remove("Au_Token");
+                editor.commit();
+                Intent intent = new Intent(AccountActivity.this, LoginActivity.class);
                 startActivity(intent);
             }
         });

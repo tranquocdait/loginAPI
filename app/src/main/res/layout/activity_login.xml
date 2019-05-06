@@ -15,7 +15,7 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="56dp"
+        android:paddingTop="10dp"
         android:paddingLeft="24dp"
         android:paddingRight="24dp">
 
@@ -23,7 +23,7 @@
             android:layout_width="wrap_content"
             android:layout_height="72dp"
             android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="24dp"
+            android:layout_marginBottom="12dp"
             android:src="@drawable/logo" />
 
         <!--  Email Label -->
@@ -43,8 +43,8 @@
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp">
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp">
             <EditText android:id="@+id/input_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -56,8 +56,8 @@
             android:id="@+id/btn_login"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:layout_marginBottom="24dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="12dp"
             android:padding="12dp"
             android:text="Login"/>
 
@@ -76,6 +76,9 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:background="?android:attr/windowBackground"
+        app:itemBackground="@color/colorPrimary"
+        app:itemTextColor="@color/colorWhite"
+        app:itemIconTint="@color/colorWhite"
         app:menu="@menu/navigation" />
     </RelativeLayout>
 <!--</ScrollView>-->

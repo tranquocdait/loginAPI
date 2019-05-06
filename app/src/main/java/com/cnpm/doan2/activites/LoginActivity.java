@@ -56,7 +56,7 @@ public class LoginActivity extends AppCompatActivity {
         sharedPreferences=getSharedPreferences("dataLogin",MODE_PRIVATE);
         if(!"".equals(sharedPreferences.getString("Au_Token",""))) {
             Intent intent = new Intent(LoginActivity.this, AccountActivity.class);
-               intent.putExtra("Au_Token", sharedPreferences.getString("Au_Token",Au_Token));
+               intent.putExtra("Au_Token", sharedPreferences.getString("Au_Token",""));
             startActivity(intent);
         }
         setContentView(R.layout.activity_login);

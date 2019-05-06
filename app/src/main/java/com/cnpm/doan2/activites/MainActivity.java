@@ -69,6 +69,7 @@ public class MainActivity extends AppCompatActivity {
                             arrayListUrlImage.add(image.getUrl());
                         }
                         Intent intent = new Intent(MainActivity.this, PlaceDetail.class);
+                        intent.putExtra("id",placeList.get(position).getId().toString());
                         intent.putExtra("namePlace", placeList.get(position).getNamePlace());
                         intent.putExtra("address", placeList.get(position).getAddress());
                         intent.putExtra("about", placeList.get(position).getAbout());
