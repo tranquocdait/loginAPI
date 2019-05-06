@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -12,15 +11,14 @@ import android.widget.TextView;
 import com.cnpm.doan2.R;
 import com.cnpm.doan2.config.AdapterCommentPlace;
 import com.cnpm.doan2.models.CommentPlace;
-import com.cnpm.doan2.models.Image;
-import com.cnpm.doan2.models.Place;
+
+import com.cnpm.doan2.models.RatePalce;
 import com.cnpm.doan2.reponse.StatusCommentPlace;
-import com.cnpm.doan2.reponse.StatusTourist;
+import com.cnpm.doan2.reponse.StatusRatePlace;
 import com.cnpm.doan2.service.RetrofitClient;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -42,6 +40,8 @@ public class PlaceDetail extends AppCompatActivity {
         TextView tvabout=(TextView) findViewById(R.id.id_aboutPlace_detail);
         ImageView tvimage=(ImageView) findViewById(R.id.id_imagePlace_detail);
         ImageView tvimageback=(ImageView) findViewById(R.id.id_back);
+        final TextView tvmeniumrate=(TextView) findViewById(R.id.id_rate_medium);
+        final TextView tvnumberrate=(TextView) findViewById(R.id.id_number_accout_rate);
 
         Intent intent=getIntent();
         String id=intent.getStringExtra("id").toString();
@@ -76,6 +76,40 @@ public class PlaceDetail extends AppCompatActivity {
             }
             @Override
             public void onFailure(Call<StatusCommentPlace> call, Throwable t) {
+                textViewResult.setText(t.getMessage());
+            }
+        });
+
+        Call<StatusRatePlace> statusRatePlaceCall = RetrofitClient
+                .getInstance().getRatePlaceApi().getRatePlace(id);
+        statusRatePlaceCall.enqueue(new Callback<StatusRatePlace>() {
+            @Override
+            public void onResponse(Call<StatusRatePlace> call, Response<StatusRatePlace> response) {
+                if (!response.isSuccessful()) {
+                    textViewResult.setText("Code:" + response.code());
+                    return;
+                }
+                else {
+                    StatusRatePlace statusRatePlace=response.body();
+                    if("success".equals(statusRatePlace.getStatus())) {
+                        ArrayList<RatePalce> ratePalceArrayList = (ArrayList)statusRatePlace.getData();
+                        tvnumberrate.setText("("+ratePalceArrayList.size()+" reviews)");
+                        float menitumrate=0;
+                        for (RatePalce ratePalce:ratePalceArrayList){
+                            menitumrate+=ratePalce.getNumberStar();
+                        }
+                        if(menitumrate==0) {
+                            tvmeniumrate.setText("0");
+                        }
+                        else {
+//                            Math.round(menitumrate/ratePalceArrayList.size()*10)/10
+                            tvmeniumrate.setText(Math.round(menitumrate/(float)ratePalceArrayList.size()*10)/10+"");
+                        }
+                    }
+                }
+            }
+            @Override
+            public void onFailure(Call<StatusRatePlace> call, Throwable t) {
                 textViewResult.setText(t.getMessage());
             }
         });

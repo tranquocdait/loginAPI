@@ -123,7 +123,7 @@ public class AccountActivity extends AppCompatActivity {
             public void onClick(View v) {
                 sharedPreferences = getSharedPreferences("dataLogin", MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.remove("Au_Token");
+                editor.putString("Au_Token","");
                 editor.commit();
                 Intent intent = new Intent(AccountActivity.this, LoginActivity.class);
                 startActivity(intent);

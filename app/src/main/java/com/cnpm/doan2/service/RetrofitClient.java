@@ -48,4 +48,7 @@ public class RetrofitClient {
     public CommentPlaceService getCommentPlaceApi() {
         return retrofit.create(CommentPlaceService.class);
     }
+    public RatePlaceService getRatePlaceApi() {
+        return retrofit.create(RatePlaceService.class);
+    }
 }
