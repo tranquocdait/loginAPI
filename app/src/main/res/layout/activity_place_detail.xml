@@ -49,6 +49,13 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="TextView" />
+
+
+            <TextView
+                android:id="@+id/id_aboutPlace_detail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TextView" />
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -60,6 +67,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:layout_margin="10dp"
                     android:text="TextView" />
 
                 <ImageView
@@ -102,14 +110,19 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:layout_margin="10dp"
                     android:text="TextView" />
-            </LinearLayout>
 
-            <TextView
-                android:id="@+id/id_aboutPlace_detail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="TextView" />
+                <TextView
+                    android:id="@+id/id_evaluate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1"
+                    android:text="Evaluate"
+                    android:textColor="@color/colorNavigation"
+                    android:textStyle="bold|italic" />
+            </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -138,7 +151,7 @@
                 </LinearLayout>
 
                 <ImageView
-                    android:id="@+id/id_image_avatar_account"
+                    android:id="@+id/id_send"
                     android:layout_width="70dp"
                     android:layout_height="40dp"
                     android:layout_marginTop="20dp"

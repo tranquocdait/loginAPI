@@ -65,13 +65,14 @@ public class AccountActivity extends AppCompatActivity {
                         tourist = response.body().getData();
                         Picasso.with(getApplicationContext()).load(tourist.getAvatar().getUrl()).into(imageView);
                         fullname.setText(tourist.getFullname());
-//                    if (tourist.isGender()) gender.setText("Male");
-//                    else gender.setText("Male");
-                        gender.setText(id);
-                        nationality.setText("Vietnamese");
+                        if (tourist.getGender() == Boolean.TRUE) gender.setText("Male");
+                        else if (tourist.getGender() == Boolean.FALSE) gender.setText("Female");
+                        else gender.setText("");
+                        if (tourist.getNationality() != null)
+                            nationality.setText(tourist.getNationality());
+                        else nationality.setText("");
                     }
-                }
-                else{
+                } else {
                     finish();
                 }
             }
@@ -123,7 +124,8 @@ public class AccountActivity extends AppCompatActivity {
             public void onClick(View v) {
                 sharedPreferences = getSharedPreferences("dataLogin", MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putString("Au_Token","");
+                editor.putString("Au_Token", "");
+                editor.putString("Authorization", "");
                 editor.commit();
                 Intent intent = new Intent(AccountActivity.this, LoginActivity.class);
                 startActivity(intent);

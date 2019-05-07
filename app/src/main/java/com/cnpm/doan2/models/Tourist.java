@@ -14,17 +14,17 @@ public class Tourist {
     @Expose
     private String fullName;
 
-//    @SerializedName("gender")
-//    @Expose
-//    private boolean gender;
+    @SerializedName("gender")
+    @Expose
+    private Boolean gender;
 
     @SerializedName("role")
     @Expose
     private String role;
 
-//    @SerializedName("nationality")
-//    @Expose
-//    private String nationality;
+    @SerializedName("nationality")
+    @Expose
+    private String nationality;
 
     @SerializedName("image")
     @Expose
@@ -40,10 +40,10 @@ public class Tourist {
     public Tourist(Integer id, String fullname, boolean gender, String role,String nationality, Image avatar, LocalDate birthDate) {
         this.id = id;
         this.fullName = fullname;
- //       this.gender = gender;
+        this.gender = gender;
         this.role = role;
         this.avatar = avatar;
-//        this.nationality=nationality;
+        this.nationality=nationality;
 //        this.birthDate = birthDate;
     }
 
@@ -55,13 +55,13 @@ public class Tourist {
         this.fullName = fullName;
     }
 
-//    public String getNationality() {
-//        return nationality;
-//    }
-//
-//    public void setNationality(String nationality) {
-//        this.nationality = nationality;
-//    }
+    public String getNationality() {
+        return nationality;
+    }
+
+    public void setNationality(String nationality) {
+        this.nationality = nationality;
+    }
 
     public Integer getId() {
         return id;
@@ -79,13 +79,13 @@ public class Tourist {
         this.fullName = fullname;
     }
 
-//    public boolean isGender() {
-//        return gender;
-//    }
-//
-//    public void setGender(boolean gender) {
-//        this.gender = gender;
-//    }
+    public Boolean getGender() {
+        return gender;
+    }
+
+    public void setGender(Boolean gender) {
+        this.gender = gender;
+    }
 
     public String getRole() {
         return role;

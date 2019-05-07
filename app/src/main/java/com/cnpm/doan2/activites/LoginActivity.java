@@ -24,11 +24,13 @@ import com.cnpm.doan2.service.UsersService;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import okhttp3.Headers;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.http.Header;
 
 public class LoginActivity extends AppCompatActivity {
     private static final String TAG = "LoginActivity";
@@ -53,10 +55,10 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        sharedPreferences=getSharedPreferences("dataLogin",MODE_PRIVATE);
-        if(!"".equals(sharedPreferences.getString("Au_Token",""))) {
+        sharedPreferences = getSharedPreferences("dataLogin", MODE_PRIVATE);
+        if (!"".equals(sharedPreferences.getString("Au_Token", ""))) {
             Intent intent = new Intent(LoginActivity.this, AccountActivity.class);
-               intent.putExtra("Au_Token", sharedPreferences.getString("Au_Token",""));
+            intent.putExtra("Au_Token", sharedPreferences.getString("Au_Token", ""));
             startActivity(intent);
         }
         setContentView(R.layout.activity_login);
@@ -131,7 +133,7 @@ public class LoginActivity extends AppCompatActivity {
 
         // TODO: Implement your own authentication logic here.
         Call<User> call = RetrofitClient
-                .getInstance().getUserApi().loginUser(new UserLogin(userName,password));
+                .getInstance().getUserApi().loginUser(new UserLogin(userName, password));
 //        Retrofit retrofit = new Retrofit.Builder()
 //                .baseUrl("https://travel-now-app.herokuapp.com/")
 //                .addConverterFactory(GsonConverterFactory.create())
@@ -139,6 +141,7 @@ public class LoginActivity extends AppCompatActivity {
 //        UsersService usersService = retrofit.create(UsersService.class);
 ////        Call<User> call = usersService.loginUser("admin","secret123");
 //        Call<User> call = usersService.loginUser(new UserLogin(userName,password));
+
         call.enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
@@ -146,8 +149,14 @@ public class LoginActivity extends AppCompatActivity {
                     Toast.makeText(getBaseContext(), "Post's successful", Toast.LENGTH_LONG).show();
                     return;
                 }
-                User user=response.body();
+                User user = response.body();
                 Au_Token = user.getId().toString();
+                Headers header=response.headers();
+                String authorization=header.get("Authorization");
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString("Au_Token", Au_Token);
+                editor.putString("Authorization", authorization);
+                editor.commit();
             }
 
             @Override
@@ -191,13 +200,10 @@ public class LoginActivity extends AppCompatActivity {
 
     public void onLoginSuccess() {
         _loginButton.setEnabled(true);
-        SharedPreferences.Editor editor=sharedPreferences.edit();
-        editor.putString("Au_Token",Au_Token);
-        editor.commit();
         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-     //   intent.putExtra("Au_Token", Au_Token);
+        //   intent.putExtra("Au_Token", Au_Token);
         startActivity(intent);
-  //      this.finish();
+        //      this.finish();
     }
 
     public void onLoginFailed() {
