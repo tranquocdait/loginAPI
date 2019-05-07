@@ -119,6 +119,14 @@ public class AccountActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        post.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AccountActivity.this, MyPostActivity.class);
+                intent.putExtra("id", tourist.getId());
+                startActivity(intent);
+            }
+        });
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -10,8 +10,10 @@ import android.widget.TextView;
 
 import com.cnpm.doan2.R;
 import com.cnpm.doan2.activites.MainActivity;
+import com.cnpm.doan2.activites.MyPostActivity;
 import com.cnpm.doan2.models.Image;
 import com.cnpm.doan2.models.Place;
+import com.cnpm.doan2.models.Post;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -22,6 +24,7 @@ public class AdapterPlace extends ArrayAdapter<Place> {
     public AdapterPlace( Context context, ArrayList<Place> placeArrayList) {
         super(context, 0,placeArrayList);
     }
+
     @Override
     public View getView(int position, View convertView, ViewGroup parent){
         if(convertView==null){

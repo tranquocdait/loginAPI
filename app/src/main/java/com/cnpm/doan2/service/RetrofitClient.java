@@ -23,7 +23,7 @@ public class RetrofitClient {
 
 
     private RetrofitClient() {
-        retrofit=new Retrofit.Builder()
+        retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
@@ -39,16 +39,24 @@ public class RetrofitClient {
     public UsersService getUserApi() {
         return retrofit.create(UsersService.class);
     }
+
     public PlaceService getPlaceApi() {
         return retrofit.create(PlaceService.class);
     }
+
     public TouristService getTouristApi() {
         return retrofit.create(TouristService.class);
     }
+
     public CommentPlaceService getCommentPlaceApi() {
         return retrofit.create(CommentPlaceService.class);
     }
+
     public RatePlaceService getRatePlaceApi() {
         return retrofit.create(RatePlaceService.class);
+    }
+
+    public PostService getPosttApi() {
+        return retrofit.create(PostService.class);
     }
 }

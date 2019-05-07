@@ -48,7 +48,7 @@
             android:layout_height="wrap_content">
 
             <EditText
-                android:id="@+id/edt_email"
+                android:id="@+id/edit_gerden"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawablePadding="15dp"
