@@ -101,14 +101,13 @@ public class MainActivity extends AppCompatActivity {
                         return true;
                     case R.id.navigation_favorite:
                         //   viewPager.setCurrentItem(3);
+                        Intent intentFollow = new Intent(MainActivity.this, FollowActivity.class);
+                        startActivity(intentFollow);
                         return true;
                     case R.id.navigation_profile:
                         //  viewPager.setCurrentItem(4);
-//                        myApplication = MyApplication.getInstance();
-//                        if (myApplication.getIsLogin()) {
-                            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-                            startActivity(intent);
-//                        }
+                            Intent intentAccount = new Intent(MainActivity.this, LoginActivity.class);
+                            startActivity(intentAccount);
                         return true;
                 }
                 return false;

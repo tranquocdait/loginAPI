@@ -25,17 +25,17 @@ public class Post {
     @Expose
     private Tourist tourist;
 
-//    @SerializedName("createdAt")
-//    @Expose
-//    private int[] createdAt;
-//
-//    @SerializedName("updatedAt")
-//    @Expose
-//    private int[] updatedAt;
-//
-//    @SerializedName("likes")
-//    @Expose
-//    private int[] likes;
+    @SerializedName("createdAt")
+    @Expose
+    private int[] createdAt;
+
+    @SerializedName("updatedAt")
+    @Expose
+    private int[] updatedAt;
+
+    @SerializedName("likes")
+    @Expose
+    private int[] likes;
 
     public Post() {
     }
@@ -46,9 +46,9 @@ public class Post {
         this.images = images;
         this.place = place;
         this.tourist = tourist;
-//        this.createdAt = createdAt;
-//        this.updatedAt = updatedAt;
-//        this.likes = likes;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
+        this.likes = likes;
     }
 
     public Integer getId() {
@@ -91,27 +91,27 @@ public class Post {
         this.tourist = tourist;
     }
 
-//    public int[] getCreatedAt() {
-//        return createdAt;
-//    }
-//
-//    public void setCreatedAt(int[] createdAt) {
-//        this.createdAt = createdAt;
-//    }
-//
-//    public int[] getUpdatedAt() {
-//        return updatedAt;
-//    }
-//
-//    public void setUpdatedAt(int[] updatedAt) {
-//        this.updatedAt = updatedAt;
-//    }
-//
-//    public int[] getLikes() {
-//        return likes;
-//    }
-//
-//    public void setLikes(int[] likes) {
-//        this.likes = likes;
-//    }
+    public int[] getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(int[] createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public int[] getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(int[] updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
+    public int[] getLikes() {
+        return likes;
+    }
+
+    public void setLikes(int[] likes) {
+        this.likes = likes;
+    }
 }

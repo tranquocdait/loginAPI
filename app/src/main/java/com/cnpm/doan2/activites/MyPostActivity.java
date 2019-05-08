@@ -30,8 +30,11 @@ public class MyPostActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_post);
         listView = (ListView) findViewById(R.id.id_list_post_account);
-        Intent intent =getIntent();
-        String touristId=intent.getStringExtra("318");
+
+//        Intent intent =getIntent();
+//        String touristId=intent.getStringExtra("id").toString();
+        sharedPreferences = getSharedPreferences("dataLogin", MODE_PRIVATE);
+        String touristId=sharedPreferences.getString("Au_Token", "") ;
         Call<StatusPost> call = RetrofitClient
                 .getInstance().getPosttApi().getListPost(touristId);
         call.enqueue(new Callback<StatusPost>() {
@@ -39,17 +42,15 @@ public class MyPostActivity extends AppCompatActivity {
             public void onResponse(Call<StatusPost> call, Response<StatusPost> response) {
                 if (!response.isSuccessful()) return;
                 if ("success".equals(response.body().getStatus())) {
-                    Toast.makeText(getBaseContext(), "Yes yes yes: ", Toast.LENGTH_LONG).show();
                     final ArrayList<Post> postList = (ArrayList) response.body().getData();
                     adapterPost = new AdapterPost(MyPostActivity.this, postList);
                     listView.setAdapter(adapterPost);
                 }
-                Toast.makeText(getBaseContext(), "No No No: ", Toast.LENGTH_LONG).show();
             }
 
             @Override
             public void onFailure(Call<StatusPost> call, Throwable t) {
-                Toast.makeText(getBaseContext(), "ket noi ko dc!", Toast.LENGTH_LONG).show();
+                Toast.makeText(getBaseContext(), "Interrupt connection!", Toast.LENGTH_LONG).show();
             }
         });
     }

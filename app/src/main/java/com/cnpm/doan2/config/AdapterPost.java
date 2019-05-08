@@ -25,19 +25,18 @@ public class AdapterPost extends ArrayAdapter<Post> {
     public View getView(int position, View convertView, ViewGroup parent){
         if(convertView==null){
             LayoutInflater inflater=LayoutInflater.from(getContext());
-            convertView=inflater.inflate(R.layout.activity_place,parent,false);
+            convertView=inflater.inflate(R.layout.adapter_post,parent,false);
         }
-        TextView tvNumberLike=(TextView) convertView.findViewById(R.id.id_number_like);
-        TextView tvContent=(TextView) convertView.findViewById(R.id.id_content_post);
+        final TextView tvNumberLike=(TextView) convertView.findViewById(R.id.id_number_like);
+        final TextView tvContent=(TextView) convertView.findViewById(R.id.id_content_post);
         ImageView imAvatar=(ImageView) convertView.findViewById(R.id.id_avatar_comemt_port);
 
-        Post post=getItem(position);
+        final Post post=getItem(position);
         if (post!=null){
             tvContent.setText(post.getContent());
-           // tvNumberLike.setText(post.getLikes().length+" likes");
+            tvNumberLike.setText(post.getLikes().length+" likes");
             List<Image> imageList=post.getImages();
             Picasso.with(getContext()).load(imageList.get(0).getUrl()).into(imAvatar);
-
         }
         return convertView;
     }
