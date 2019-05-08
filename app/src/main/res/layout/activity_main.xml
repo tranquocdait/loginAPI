@@ -21,13 +21,15 @@
 
     <!--</android.support.v4.widget.NestedScrollView>-->
 
-    <!--<include layout="@layout/toolbar"/>-->
+    <include layout="@layout/toolbar"
+        android:id="@+id/toolbar"/>
     <ListView
         android:id="@+id/id_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:layout_editor_absoluteX="8dp"
         tools:layout_editor_absoluteY="3dp"
+        android:layout_below="@id/toolbar"
         android:layout_marginBottom="20dp"/>
 
     <android.support.design.widget.BottomNavigationView
