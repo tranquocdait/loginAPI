@@ -17,7 +17,6 @@ import com.cnpm.doan2.R;
 import com.cnpm.doan2.config.AdapterCommentPlace;
 import com.cnpm.doan2.models.CommentPlace;
 
-import com.cnpm.doan2.models.Place;
 import com.cnpm.doan2.models.RatePalce;
 import com.cnpm.doan2.models.RequestComment;
 import com.cnpm.doan2.reponse.StatusCommentPlace;
@@ -171,7 +170,7 @@ public class PlaceDetail extends AppCompatActivity {
         });
 
         //Evaluate
-        TextView evaluate = (TextView) findViewById(R.id.id_evaluate);
+        TextView evaluate = (TextView) findViewById(R.id.id_unfllow);
         evaluate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -1,5 +1,6 @@
 package com.cnpm.doan2.activites;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
@@ -7,13 +8,11 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import com.cnpm.doan2.R;
 import com.cnpm.doan2.config.AdapterFollow;
-import com.cnpm.doan2.config.AdapterPlace;
 import com.cnpm.doan2.models.Tourist;
 import com.cnpm.doan2.reponse.StatusFollow;
 import com.cnpm.doan2.reponse.StatusTourist;
@@ -46,7 +45,7 @@ public class FollowActivity extends AppCompatActivity {
 
         touristList = new ArrayList<Tourist>();
         Call<StatusFollow> call = RetrofitClient
-                .getInstance().getFollowtApi().getFollow("318");
+                .getInstance().getFollowtApi().getFollow(touristId);
         call.enqueue(new Callback<StatusFollow>() {
             @Override
             public void onResponse(Call<StatusFollow> call, final Response<StatusFollow> response) {
@@ -64,8 +63,6 @@ public class FollowActivity extends AppCompatActivity {
                                 if (!responseTourist.isSuccessful()) return;
                                 if ("success".equals(responseTourist.body().getStatus()))
                                     touristList.add(responseTourist.body().getData());
-                                Toast.makeText(getBaseContext(), "" + touristList.size(), Toast.LENGTH_LONG).show();
-                                Toast.makeText(getBaseContext(), "" + responseTourist.body().getData().getId(), Toast.LENGTH_LONG).show();
                             }
 
                             @Override
@@ -77,12 +74,17 @@ public class FollowActivity extends AppCompatActivity {
                     adapterFollow = new AdapterFollow(FollowActivity.this, touristList);
                     listView.setAdapter(adapterFollow);
 
-//                    listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//                        @Override
-//                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//
-//                        }
-//                    });
+                    listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                            Intent intent=new Intent(FollowActivity.this, VisitTouristActivity.class);
+                            intent.putExtra("idTourist",touristList.get(position).getId().toString());
+                            intent.putExtra("fullnameTourist",touristList.get(position).getFullName());
+                            intent.putExtra("avatarTourist",touristList.get(position).getAvatar().getUrl());
+                            startActivity(intent);
+                          //  Toast.makeText(getBaseContext(), ""+touristList.get(position).getId(), Toast.LENGTH_LONG).show();
+                        }
+                    });
                 }
 
             }

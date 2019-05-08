@@ -8,7 +8,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ImageView;
 
 import com.cnpm.doan2.R;
@@ -17,8 +16,6 @@ import com.cnpm.doan2.reponse.StatusTourist;
 import com.cnpm.doan2.service.RetrofitClient;
 import com.squareup.picasso.Picasso;
 
-import android.content.Context;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import retrofit2.Call;
@@ -43,7 +40,7 @@ public class AccountActivity extends AppCompatActivity {
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account);
-        imageView = (ImageView) findViewById(R.id.id_avatar);
+        imageView = (ImageView) findViewById(R.id.id_avatar_tourist);
         fullname = (TextView) findViewById(R.id.id_fullname);
         gender = (TextView) findViewById(R.id.id_gender);
         nationality = (TextView) findViewById(R.id.id_nationality);
