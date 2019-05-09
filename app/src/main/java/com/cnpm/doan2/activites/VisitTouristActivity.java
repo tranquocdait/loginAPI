@@ -54,7 +54,7 @@ public class VisitTouristActivity extends AppCompatActivity {
         Bitmap circularBitmap = ImageConverter.getRoundedCornerBitmap(bitmap, 100);
 
         Call<StatusPost> call = RetrofitClient
-                .getInstance().getPosttApi().getListPost(idTourist);
+                .getInstance().getPostApi().getListPost(idTourist);
         call.enqueue(new Callback<StatusPost>() {
             @Override
             public void onResponse(Call<StatusPost> call, Response<StatusPost> response) {

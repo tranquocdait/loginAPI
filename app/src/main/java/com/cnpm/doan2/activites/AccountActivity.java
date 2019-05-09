@@ -32,6 +32,7 @@ public class AccountActivity extends AppCompatActivity {
     TextView fullname;
     TextView gender;
     TextView nationality;
+    String idAccount;
 
     private TextView post;
     private TextView edit;
@@ -57,6 +58,7 @@ public class AccountActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         final String id = intent.getStringExtra("Au_Token");
+        idAccount=id;
         Call<StatusTourist> call = RetrofitClient
                 .getInstance().getTouristApi().getTourist(id);
         call.enqueue(new Callback<StatusTourist>() {
@@ -127,7 +129,7 @@ public class AccountActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(AccountActivity.this, MyPostActivity.class);
-                intent.putExtra("id", tourist.getId());
+                intent.putExtra("id", idAccount);
                 startActivity(intent);
             }
         });

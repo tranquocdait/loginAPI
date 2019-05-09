@@ -56,10 +56,12 @@ public class RetrofitClient {
         return retrofit.create(RatePlaceService.class);
     }
 
-    public PostService getPosttApi() {
+    public PostService getPostApi() {
         return retrofit.create(PostService.class);
     }
+
     public FollowService getFollowtApi() {
         return retrofit.create(FollowService.class);
     }
+
 }

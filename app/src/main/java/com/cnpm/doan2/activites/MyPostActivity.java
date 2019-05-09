@@ -41,10 +41,10 @@ public class MyPostActivity extends AppCompatActivity {
         setContentView(R.layout.activity_my_post);
         listView = (ListView) findViewById(R.id.id_list_post_account);
 
-//        Intent intent =getIntent();
-//        String touristId=intent.getStringExtra("fullname").toString();
-        sharedPreferences = getSharedPreferences("dataLogin", MODE_PRIVATE);
-        String touristId=sharedPreferences.getString("Au_Token", "") ;
+        Intent intent =getIntent();
+        String touristId=intent.getStringExtra("id").toString();
+//        sharedPreferences = getSharedPreferences("dataLogin", MODE_PRIVATE);
+//        String touristId=sharedPreferences.getString("Au_Token", "") ;
 
         Bitmap bitmap = BitmapFactory.decodeResource(this.getResources(), R.drawable.back);
         Bitmap circularBitmap = ImageConverter.getRoundedCornerBitmap(bitmap, 100);
@@ -67,7 +67,7 @@ public class MyPostActivity extends AppCompatActivity {
         });
 
         Call<StatusPost> call = RetrofitClient
-                .getInstance().getPosttApi().getListPost("415");
+                .getInstance().getPostApi().getListPost("400");
         call.enqueue(new Callback<StatusPost>() {
             @Override
             public void onResponse(Call<StatusPost> call, Response<StatusPost> responseee) {

@@ -1,16 +1,10 @@
-<!--<?xml version="1.0" encoding="utf-8"?>-->
-<!--<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
-<!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
-<!--xmlns:tools="http://schemas.android.com/tools"-->
-<!--android:layout_width="match_parent"-->
-<!--android:layout_height="match_parent"-->
-<!--tools:context=".activites.AccountActivity">-->
+<!--<?xml version="1.0" encoding="utf-8"?>--><!--<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"--><!--xmlns:app="http://schemas.android.com/apk/res-auto"--><!--xmlns:tools="http://schemas.android.com/tools"--><!--android:layout_width="match_parent"--><!--android:layout_height="match_parent"--><!--tools:context=".activites.AccountActivity">-->
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_content"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools">
+    android:layout_height="match_parent">
 
 
     <android.support.design.widget.BottomNavigationView
@@ -30,55 +24,69 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-
-        <LinearLayout
+        <android.support.v7.widget.CardView
+            android:id="@+id/cardView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-
-
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/id_avatar_tourist"
-                android:layout_width="120dp"
-                android:layout_height="80dp"
-                android:layout_below="@+id/imageView"
-                android:layout_centerHorizontal="true"
-                android:layout_margin="5dp"
-                android:layout_marginTop="24dp"
-                android:layout_weight="1" />
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="5dp"
+            app:cardCornerRadius="10dp">
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:layout_weight="1"
-                android:orientation="vertical">
+                android:layout_marginBottom="5dp"
+                android:orientation="horizontal">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/id_avatar_tourist"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_below="@+id/imageView"
+                    android:layout_centerHorizontal="true"
+                    android:layout_margin="5dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_weight="1" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:id="@+id/id_fullname"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="TextView" />
+                </LinearLayout>
 
                 <TextView
-                    android:id="@+id/id_fullname"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/id_unfllow"
+                    android:layout_width="4dp"
                     android:layout_height="wrap_content"
-                    android:text="TextView" />
+                    android:layout_margin="10dp"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"
+                    android:text="Unfollow"
+                    android:textColor="@color/colorNavigation"
+                    android:textStyle="bold|italic" />
+
             </LinearLayout>
+        </android.support.v7.widget.CardView>
 
-            <TextView
-                android:id="@+id/id_unfllow"
-                android:layout_width="4dp"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:layout_weight="1"
-                android:text="Unfollow"
-                android:textColor="@color/colorNavigation"
-                android:textStyle="bold|italic" />
-
-        </LinearLayout>
 
         <ListView
             android:id="@+id/id_list_post_account"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:layout_marginBottom="60dp"
+            android:background="@color/colorGrey"
+            android:divider="@null"
+            android:dividerHeight="0dp" />
     </LinearLayout>
 
-</RelativeLayout>
-    <!--</android.support.constraint.ConstraintLayout>-->
+</RelativeLayout><!--</android.support.constraint.ConstraintLayout>-->

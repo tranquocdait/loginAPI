@@ -29,9 +29,10 @@
   <color name="colorText">#202020</color>
   <color name="colorWhite">#FFFFFF</color>
   <color name="colorBlack">#000000</color>
+  <color name="colorLightGrey">#e4e4e4</color>
   <color name="colorGrey">#e1e1e1</color>
   <color name="colorGreyMedium">#96989A</color>
-  <color name="colorGreyDark">#797979</color>
+  <color name="colorGreyDark">#696969</color>
   <color name="colorBackgroundGrey">#BDBFC1</color>
   <color name="colorCategory">#4aafff</color>
   <color name="colorUsername">#1E88E5</color>

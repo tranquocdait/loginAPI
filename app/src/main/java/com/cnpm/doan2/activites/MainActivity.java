@@ -49,8 +49,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+//        toolbar = findViewById(R.id.toolbar);
+//        setSupportActionBar(toolbar);
 //        getSupportActionBar().setDisplayShowHomeEnabled(true);
 //        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         listView = (ListView) findViewById(R.id.id_list);
@@ -103,6 +103,15 @@ public class MainActivity extends AppCompatActivity {
                         return true;
                     case R.id.navigation_video:
                         //   viewPager.setCurrentItem(2);
+                        sharedPreferences = getSharedPreferences("dataLogin", MODE_PRIVATE);
+                        if (!"".equals(sharedPreferences.getString("Au_Token", ""))) {
+                            Intent intent = new Intent(MainActivity.this, HomeActivity.class);
+                            intent.putExtra("Au_Token", sharedPreferences.getString("Au_Token", ""));
+                            startActivity(intent);
+                        } else {
+                            Intent intentAccount = new Intent(MainActivity.this, LoginActivity.class);
+                            startActivity(intentAccount);
+                        }
                         return true;
                     case R.id.navigation_favorite:
                         //   viewPager.setCurrentItem(3);

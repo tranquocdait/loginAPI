@@ -37,7 +37,7 @@ public class AdapterPost extends ArrayAdapter<Post> {
         }
         final TextView tvNumberLike=(TextView) convertView.findViewById(R.id.id_number_like);
         final TextView tvContent=(TextView) convertView.findViewById(R.id.id_content_post);
-        ImageView imAvatar=(ImageView) convertView.findViewById(R.id.id_avatar_comemt_port);
+        ImageView imAvatar=(ImageView) convertView.findViewById(R.id.id_avatar_comemt_post);
 
         final TextView tvFullname=(TextView) convertView.findViewById(R.id.id_fullname);
         ImageView imTourist=(ImageView) convertView.findViewById(R.id.id_image_avatar);
