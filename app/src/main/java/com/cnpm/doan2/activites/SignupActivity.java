@@ -24,10 +24,6 @@ public class SignupActivity extends AppCompatActivity {
 
     @BindView(R.id.id_fullname_creat)
     EditText _fullname;
-    @BindView(R.id.id_gerden_creat)
-    EditText _gerden;
-    @BindView(R.id.id_nationality_creat)
-    EditText _nationality;
     @BindView(R.id.id_username_creat)
     EditText _username;
     @BindView(R.id.id_password_creat)
@@ -109,8 +105,6 @@ public class SignupActivity extends AppCompatActivity {
         progressDialog.show();
 
         String fullname = _fullname.getText().toString();
-        String address = _gerden.getText().toString();
-        String nationality = _nationality.getText().toString();
         String username = _username.getText().toString();
         String password = _passwordText.getText().toString();
         String reEnterPassword = _reEnterPasswordText.getText().toString();
@@ -146,8 +140,7 @@ public class SignupActivity extends AppCompatActivity {
         boolean valid = true;
 
         String fullname = _fullname.getText().toString();
-        String gender = _gerden.getText().toString();
-        String nationality = _nationality.getText().toString();
+
         String username = _username.getText().toString();
         String password = _passwordText.getText().toString();
         String reEnterPassword = _reEnterPasswordText.getText().toString();
@@ -159,21 +152,9 @@ public class SignupActivity extends AppCompatActivity {
             _fullname.setError(null);
         }
 
-        if (gender.isEmpty()) {
-            _gerden.setError("Enter Valid Address");
-            valid = false;
-        } else {
-            _gerden.setError(null);
-        }
 
 
 //        if (email.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-        if (nationality.isEmpty()) {
-            _nationality.setError("enter a valid email address");
-            valid = false;
-        } else {
-            _nationality.setError(null);
-        }
 
         if (username.isEmpty() || username.length() < 6) {
             _username.setError("at least 3 characters");

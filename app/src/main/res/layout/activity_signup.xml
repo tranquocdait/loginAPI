@@ -23,72 +23,10 @@
         <ImageView android:src="@drawable/logo"
             android:layout_width="90dp"
             android:layout_height="30dp"
-            android:layout_marginBottom="0dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginBottom="20dp"
             android:layout_gravity="center_horizontal" />
 
-        <!-- Fullname Label -->
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="0dp"
-            android:layout_marginBottom="0dp">
-
-            <EditText
-                android:id="@+id/id_fullname_creat"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Full name"
-                android:inputType="textPersonName" />
-        </android.support.design.widget.TextInputLayout>
-
-        <!-- Gerden Label -->
-
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="0dp"
-            android:layout_marginBottom="0dp">
-
-            <EditText
-                android:id="@+id/id_gerden_creat"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Gerden"
-                android:inputType="textPostalAddress" />
-        </android.support.design.widget.TextInputLayout>
-
-
-
-        <!--  Birthdate Label -->
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="0dp"
-            android:layout_marginBottom="0dp">
-
-            <EditText
-                android:id="@+id/id_birthdate_creat"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Birthdate"
-                android:inputType="textEmailAddress" />
-        </android.support.design.widget.TextInputLayout>
-
-
-        <!-- Nationality lable -->
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="0dp"
-            android:layout_marginBottom="0dp">
-
-            <EditText
-                android:id="@+id/id_nationality_creat"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Nationality"
-                android:inputType="number" />
-        </android.support.design.widget.TextInputLayout>
 
         <!-- Username Label -->
         <android.support.design.widget.TextInputLayout
@@ -135,13 +73,30 @@
                 android:inputType="textPassword" />
         </android.support.design.widget.TextInputLayout>
 
+        <!-- Fullname Label -->
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0dp"
+            android:layout_marginBottom="0dp">
+
+            <EditText
+                android:id="@+id/id_fullname_creat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Full name"
+                android:inputType="textPersonName" />
+        </android.support.design.widget.TextInputLayout>
+
         <!-- Signup Button -->
         <android.support.v7.widget.AppCompatButton
             android:id="@+id/btn_signup"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
-            android:layout_marginBottom="2dp"
+            android:layout_marginBottom="10dp"
+            android:background="@color/colorPrimary"
+            android:textColor="@color/white"
             android:padding="4dp"
             android:text="Create Account"/>
 
@@ -150,6 +105,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="24dp"
             android:text="Already a member? Login"
+            android:textColor="@color/black"
             android:gravity="center"
             android:textSize="16dip"/>
 

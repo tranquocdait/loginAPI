@@ -36,7 +36,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textEmailAddress"
-                android:hint="Email" />
+                android:hint="User Name" />
         </android.support.design.widget.TextInputLayout>
 
         <!--  Password Label -->
@@ -59,12 +59,15 @@
             android:layout_marginTop="16dp"
             android:layout_marginBottom="12dp"
             android:padding="12dp"
+            android:background="@color/colorPrimary"
+            android:textColor="@color/white"
             android:text="Login"/>
 
         <TextView android:id="@+id/link_signup"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="24dp"
+            android:textColor="@color/black"
             android:text="No account yet? Create one"
             android:gravity="center"
             android:textSize="16dip"/>

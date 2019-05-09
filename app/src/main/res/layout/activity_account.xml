@@ -1,131 +1,224 @@
-<!--<?xml version="1.0" encoding="utf-8"?>-->
-<!--<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
-<!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
-<!--xmlns:tools="http://schemas.android.com/tools"-->
-<!--android:layout_width="match_parent"-->
-<!--android:layout_height="match_parent"-->
-<!--tools:context=".activites.AccountActivity">-->
+<!--<?xml version="1.0" encoding="utf-8"?>--><!--<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"--><!--xmlns:app="http://schemas.android.com/apk/res-auto"--><!--xmlns:tools="http://schemas.android.com/tools"--><!--android:layout_width="match_parent"--><!--android:layout_height="match_parent"--><!--tools:context=".activites.AccountActivity">-->
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_content"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools">
+    android:layout_height="match_parent">
 
-    <LinearLayout
+    <android.support.v7.widget.CardView
+        android:id="@+id/cardViewAccount"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="5dp"
+        app:cardCornerRadius="10dp">
 
-        <LinearLayout
+        <RelativeLayout
+            android:id="@+id/account_info"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:orientation="vertical">
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginRight="5dp">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/id_avatar_tourist"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_below="@+id/imageView"
+                android:layout_margin="5dp"
+                android:layout_marginTop="24dp"
+                android:layout_weight="1" />
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_toRightOf="@id/id_avatar_tourist"
+                android:layout_weight="1"
+                android:orientation="vertical">
 
-
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/id_avatar_tourist"
-                    android:layout_width="120dp"
-                    android:layout_height="80dp"
-                    android:layout_below="@+id/imageView"
-                    android:layout_centerHorizontal="true"
-                    android:layout_margin="5dp"
-                    android:layout_marginTop="24dp"
-                    android:layout_weight="1" />
-
-                <LinearLayout
+                <TextView
+                    android:id="@+id/id_fullname"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
+                    android:text="TextView"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="20sp" />
 
-                    <TextView
-                        android:id="@+id/id_fullname"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="TextView"
-                        android:textColor="#CC3366"
-                        android:textSize="20sp" />
+                <TextView
+                    android:id="@+id/id_gender"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="TextView"
+                    android:textColor="@color/colorGreyDark"
+                    android:textSize="16sp" />
 
-                    <TextView
-                        android:id="@+id/id_gender"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="TextView"
-                        android:textSize="16sp" />
-
-                    <TextView
-                        android:id="@+id/id_nationality"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="TextView" />
-
-                </LinearLayout>
+                <TextView
+                    android:id="@+id/id_nationality"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="TextView"
+                    android:textColor="@color/colorGreyDark" />
 
             </LinearLayout>
-        </LinearLayout>
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
 
-        <LinearLayout
-            android:id="@+id/id_post"
+    <android.support.v7.widget.CardView
+        android:id="@+id/cardViewMyPost"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="5dp"
+        app:cardCornerRadius="10dp"
+        android:layout_below="@+id/cardViewAccount">
+
+        <RelativeLayout
+            android:id="@+id/my_post"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:orientation="horizontal">
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginRight="5dp">
 
-            <TextView
-                android:id="@+id/id_post_account"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
+            <ImageView
+                android:id="@+id/postIcon"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_below="@+id/imageView"
+                android:layout_margin="5dp"
+                android:layout_marginTop="23dp"
+                android:padding="5dp"
                 android:layout_weight="1"
-                android:text="My Post"
-                android:textSize="18sp" />
-        </LinearLayout>
+                android:src="@drawable/ic_my_post"/>
 
-        <LinearLayout
-            android:id="@+id/id_edit"
+            <LinearLayout
+                android:id="@+id/id_post"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="6dp"
+                android:layout_toRightOf="@+id/postIcon"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/id_post_account"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="My Post"
+                    android:textSize="18sp" />
+            </LinearLayout>
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+    <android.support.v7.widget.CardView
+        android:id="@+id/cardViewEditAccount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="5dp"
+        app:cardCornerRadius="10dp"
+        android:layout_below="@+id/cardViewMyPost">
+
+        <RelativeLayout
+            android:id="@+id/edit_account"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:orientation="horizontal">
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginRight="5dp">
 
-            <TextView
-                android:id="@+id/id_edit_account"
-                android:layout_width="wrap_content"
+            <ImageView
+                android:id="@+id/editIcon"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_below="@+id/imageView"
+                android:layout_margin="5dp"
+                android:layout_marginTop="24dp"
+                android:src="@drawable/ic_edit_account"
+                android:layout_weight="1" />
+
+            <LinearLayout
+                android:id="@+id/id_edit"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_weight="1"
-                android:text="Edit account"
-                android:textSize="18sp" />
-        </LinearLayout>
+                android:layout_margin="6dp"
+                android:gravity="center"
+                android:layout_toRightOf="@id/editIcon"
+                android:orientation="horizontal">
 
-        <LinearLayout
-            android:id="@+id/id_logout"
+                <TextView
+                    android:id="@+id/id_edit_account"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Edit Account"
+                    android:textSize="18sp" />
+            </LinearLayout>
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+    <android.support.v7.widget.CardView
+        android:id="@+id/cardViewLogout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="5dp"
+        app:cardCornerRadius="10dp"
+        android:layout_below="@+id/cardViewEditAccount">
+
+        <RelativeLayout
+            android:id="@+id/logout_account"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:layout_gravity="center"
-            android:orientation="horizontal">
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginRight="5dp">
 
-            <TextView
-                android:id="@+id/id_logout_account"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
+            <ImageView
+                android:id="@+id/logoutIcon"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_below="@+id/imageView"
+                android:layout_margin="5dp"
+                android:layout_marginTop="23dp"
+                android:padding="5dp"
                 android:layout_weight="1"
-                android:text="Log out"
-                android:textColor="@color/colorNavigation"
-                android:textSize="20sp" />
-        </LinearLayout>
+                android:src="@drawable/ic_log_out"/>
 
-    </LinearLayout>
+            <LinearLayout
+                android:id="@+id/id_logout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="6dp"
+                android:gravity="center"
+                android:layout_toRightOf="@id/logoutIcon"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/id_logout_account"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Log Out"
+                    android:textColor="@color/colorRed"
+                    android:textSize="18sp" />
+            </LinearLayout>
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+
 
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/navigation"
@@ -134,10 +227,9 @@
         android:layout_alignParentBottom="true"
         android:background="?android:attr/windowBackground"
         app:itemBackground="@color/colorPrimary"
-        app:itemTextColor="@color/colorWhite"
         app:itemIconTint="@color/colorWhite"
+        app:itemTextColor="@color/colorWhite"
         app:menu="@menu/navigation"
         tools:layout_editor_absoluteX="171dp" />
 
-</RelativeLayout>
-    <!--</android.support.constraint.ConstraintLayout>-->
+</RelativeLayout><!--</android.support.constraint.ConstraintLayout>-->
