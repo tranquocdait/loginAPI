@@ -70,10 +70,10 @@ public class MyPostActivity extends AppCompatActivity {
                 .getInstance().getPosttApi().getListPost("415");
         call.enqueue(new Callback<StatusPost>() {
             @Override
-            public void onResponse(Call<StatusPost> call, Response<StatusPost> response) {
-                if (!response.isSuccessful()) return;
-                if ("success".equals(response.body().getStatus())) {
-                    final ArrayList<Post> postList = (ArrayList) response.body().getData();
+            public void onResponse(Call<StatusPost> call, Response<StatusPost> responseee) {
+                if (!responseee.isSuccessful()) return;
+                if ("success".equals(responseee.body().getStatus())) {
+                    final ArrayList<Post> postList = (ArrayList) responseee.body().getData();
                     adapterPost = new AdapterPost(MyPostActivity.this, postList,fullname,urlAvatar);
                     listView.setAdapter(adapterPost);
                 }

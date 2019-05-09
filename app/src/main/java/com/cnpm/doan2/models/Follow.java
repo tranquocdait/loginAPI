@@ -8,7 +8,7 @@ import java.util.List;
 public class Follow {
     @SerializedName("allFollowers")
     @Expose
-    private Integer[] allFollowers;
+    private List<Tourist> allFollowers;
     @SerializedName("allFollowings")
     @Expose
     private List<Tourist> allFollowings;
@@ -16,16 +16,16 @@ public class Follow {
     public Follow() {
     }
 
-    public Follow(Integer[] allFollowers, List<Tourist> allFollowings) {
+    public Follow(List<Tourist> allFollowers, List<Tourist> allFollowings) {
         this.allFollowers = allFollowers;
         this.allFollowings = allFollowings;
     }
 
-    public Integer[] getAllFollowers() {
+    public List<Tourist> getAllFollowers() {
         return allFollowers;
     }
 
-    public void setAllFollowers(Integer[] allFollowers) {
+    public void setAllFollowers(List<Tourist> allFollowers) {
         this.allFollowers = allFollowers;
     }
 

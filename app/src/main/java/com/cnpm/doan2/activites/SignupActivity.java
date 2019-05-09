@@ -15,9 +15,17 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.cnpm.doan2.R;
+import com.cnpm.doan2.models.RequestSignUp;
+import com.cnpm.doan2.models.User;
+import com.cnpm.doan2.models.UserLogin;
+import com.cnpm.doan2.reponse.StatusTourist;
+import com.cnpm.doan2.service.RetrofitClient;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class SignupActivity extends AppCompatActivity {
     private static final String TAG = "SignupActivity";
@@ -35,6 +43,7 @@ public class SignupActivity extends AppCompatActivity {
     @BindView(R.id.link_login)
     TextView _loginLink;
     private BottomNavigationView navigation;
+    String Au_tocken;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -59,7 +68,7 @@ public class SignupActivity extends AppCompatActivity {
                         return true;
                     case R.id.navigation_favorite:
                         //   viewPager.setCurrentItem(3);
-                        Intent intent1=new Intent(SignupActivity.this,FollowActivity.class);
+                        Intent intent1 = new Intent(SignupActivity.this, FollowActivity.class);
                         startActivity(intent1);
                         return true;
                     case R.id.navigation_profile:
@@ -108,16 +117,42 @@ public class SignupActivity extends AppCompatActivity {
         String username = _username.getText().toString();
         String password = _passwordText.getText().toString();
         String reEnterPassword = _reEnterPasswordText.getText().toString();
-
+        if (!validate()) {
+            onSignupFailed();
+            return;
+        }
         // TODO: Implement your own signup logic here.
+        RequestSignUp requestSignUp=new RequestSignUp(username,password,fullname);
+        Call<StatusTourist> call = RetrofitClient
+                .getInstance().getTouristApi().postTourist(requestSignUp);
+        call.enqueue(new Callback<StatusTourist>() {
+            @Override
+            public void onResponse(Call<StatusTourist> call, Response<StatusTourist> response) {
+                if(!response.isSuccessful()){
+                    Toast.makeText(getBaseContext(), "Sign Up failed ......", Toast.LENGTH_LONG).show();
+                    return;
+                }
+                if("success".equals(response.body().getStatus())){
+                    Toast.makeText(getBaseContext(), "OK baby", Toast.LENGTH_LONG).show();
+                    Au_tocken=response.body().getStatus();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<StatusTourist> call, Throwable t) {
+
+            }
+        });
 
         new android.os.Handler().postDelayed(
                 new Runnable() {
                     public void run() {
                         // On complete call either onSignupSuccess or onSignupFailed
                         // depending on success
-                        onSignupSuccess();
-                        // onSignupFailed();
+                        if (Au_tocken != null)
+                            onSignupSuccess();
+                        else
+                            onSignupFailed();
                         progressDialog.dismiss();
                     }
                 }, 3000);
@@ -131,7 +166,7 @@ public class SignupActivity extends AppCompatActivity {
     }
 
     public void onSignupFailed() {
-        Toast.makeText(getBaseContext(), "Login failed", Toast.LENGTH_LONG).show();
+        Toast.makeText(getBaseContext(), "Sign Up failed", Toast.LENGTH_LONG).show();
 
         _signupButton.setEnabled(true);
     }
@@ -140,7 +175,6 @@ public class SignupActivity extends AppCompatActivity {
         boolean valid = true;
 
         String fullname = _fullname.getText().toString();
-
         String username = _username.getText().toString();
         String password = _passwordText.getText().toString();
         String reEnterPassword = _reEnterPasswordText.getText().toString();
@@ -151,7 +185,6 @@ public class SignupActivity extends AppCompatActivity {
         } else {
             _fullname.setError(null);
         }
-
 
 
 //        if (email.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {

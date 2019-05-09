@@ -1,6 +1,7 @@
 package com.cnpm.doan2.service;
 
 import com.cnpm.doan2.models.RequestChangeAvatar;
+import com.cnpm.doan2.models.RequestSignUp;
 import com.cnpm.doan2.models.RequestTourist;
 import com.cnpm.doan2.reponse.StatusDelete;
 import com.cnpm.doan2.reponse.StatusTourist;
@@ -22,7 +23,7 @@ public interface TouristService {
     Call<StatusTourist> getTourist(@Path("id") String id);
 
     @POST("tourists")
-    Call<StatusTourist> postTourist();
+    Call<StatusTourist> postTourist(@Body RequestSignUp requestSignUp);
 
     @PUT("tourists/{id}")
     Call<StatusTourist> putTourist(@Part("id") Integer id, @Body RequestTourist tourist);
