@@ -55,12 +55,6 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        sharedPreferences = getSharedPreferences("dataLogin", MODE_PRIVATE);
-        if (!"".equals(sharedPreferences.getString("Au_Token", ""))) {
-            Intent intent = new Intent(LoginActivity.this, AccountActivity.class);
-            intent.putExtra("Au_Token", sharedPreferences.getString("Au_Token", ""));
-            startActivity(intent);
-        }
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
 
@@ -81,7 +75,8 @@ public class LoginActivity extends AppCompatActivity {
                         //   viewPager.setCurrentItem(2);
                         return true;
                     case R.id.navigation_favorite:
-                        //   viewPager.setCurrentItem(3);
+                        Intent intent1=new Intent(LoginActivity.this,FollowActivity.class);
+                        startActivity(intent1);
                         return true;
                     case R.id.navigation_profile:
                         //  viewPager.setCurrentItem(4);
@@ -153,6 +148,7 @@ public class LoginActivity extends AppCompatActivity {
                 Au_Token = user.getId().toString();
                 Headers header=response.headers();
                 String authorization=header.get("Authorization");
+                sharedPreferences = getSharedPreferences("dataLogin", MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.putString("Au_Token", Au_Token);
                 editor.putString("Authorization", authorization);

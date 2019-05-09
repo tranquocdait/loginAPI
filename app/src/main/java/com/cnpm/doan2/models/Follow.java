@@ -3,18 +3,20 @@ package com.cnpm.doan2.models;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
+
 public class Follow {
     @SerializedName("allFollowers")
     @Expose
     private Integer[] allFollowers;
     @SerializedName("allFollowings")
     @Expose
-    private Integer[] allFollowings;
+    private List<Tourist> allFollowings;
 
     public Follow() {
     }
 
-    public Follow(Integer[] allFollowers, Integer[] allFollowings) {
+    public Follow(Integer[] allFollowers, List<Tourist> allFollowings) {
         this.allFollowers = allFollowers;
         this.allFollowings = allFollowings;
     }
@@ -27,11 +29,11 @@ public class Follow {
         this.allFollowers = allFollowers;
     }
 
-    public Integer[] getAllFollowings() {
+    public List<Tourist> getAllFollowings() {
         return allFollowings;
     }
 
-    public void setAllFollowings(Integer[] allFollowings) {
+    public void setAllFollowings(List<Tourist> allFollowings) {
         this.allFollowings = allFollowings;
     }
 }

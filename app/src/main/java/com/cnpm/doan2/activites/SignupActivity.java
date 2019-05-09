@@ -63,6 +63,8 @@ public class SignupActivity extends AppCompatActivity {
                         return true;
                     case R.id.navigation_favorite:
                         //   viewPager.setCurrentItem(3);
+                        Intent intent1=new Intent(SignupActivity.this,FollowActivity.class);
+                        startActivity(intent1);
                         return true;
                     case R.id.navigation_profile:
                         //  viewPager.setCurrentItem(4);

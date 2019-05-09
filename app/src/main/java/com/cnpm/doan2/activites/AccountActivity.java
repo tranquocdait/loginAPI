@@ -2,6 +2,8 @@ package com.cnpm.doan2.activites;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
@@ -11,6 +13,7 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.cnpm.doan2.R;
+import com.cnpm.doan2.config.ImageConverter;
 import com.cnpm.doan2.models.Tourist;
 import com.cnpm.doan2.reponse.StatusTourist;
 import com.cnpm.doan2.service.RetrofitClient;
@@ -48,6 +51,9 @@ public class AccountActivity extends AppCompatActivity {
         post = (TextView) findViewById(R.id.id_post_account);
         edit = (TextView) findViewById(R.id.id_edit_account);
         logout = (TextView) findViewById(R.id.id_logout_account);
+
+        Bitmap bitmap = BitmapFactory.decodeResource(this.getResources(), R.drawable.back);
+        Bitmap circularBitmap = ImageConverter.getRoundedCornerBitmap(bitmap, 100);
 
         Intent intent = getIntent();
         final String id = intent.getStringExtra("Au_Token");
@@ -97,7 +103,8 @@ public class AccountActivity extends AppCompatActivity {
                         //   viewPager.setCurrentItem(2);
                         return true;
                     case R.id.navigation_favorite:
-                        //   viewPager.setCurrentItem(3);
+                        Intent intent1=new Intent(AccountActivity.this,FollowActivity.class);
+                        startActivity(intent1);
                         return true;
                     case R.id.navigation_profile:
                         //  viewPager.setCurrentItem(4);
@@ -110,7 +117,7 @@ public class AccountActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(AccountActivity.this, EditAccount.class);
-                intent.putExtra("id", tourist.getId());
+                intent.putExtra("id", tourist.getId().toString());
                 intent.putExtra("fullname", tourist.getFullName());
                 // intent.putExtra("fullname",tourist.getFullName());
                 startActivity(intent);

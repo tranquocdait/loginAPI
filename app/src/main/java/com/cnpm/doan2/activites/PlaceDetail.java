@@ -1,11 +1,17 @@
 package com.cnpm.doan2.activites;
 
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -15,6 +21,7 @@ import android.widget.Toast;
 
 import com.cnpm.doan2.R;
 import com.cnpm.doan2.config.AdapterCommentPlace;
+import com.cnpm.doan2.config.ImageConverter;
 import com.cnpm.doan2.models.CommentPlace;
 
 import com.cnpm.doan2.models.RatePalce;
@@ -39,6 +46,7 @@ public class PlaceDetail extends AppCompatActivity {
     private AdapterCommentPlace adapterCommentPlace;
     private SharedPreferences sharedPreferences;
     private String idPlace;
+    private BottomNavigationView navigation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +60,8 @@ public class PlaceDetail extends AppCompatActivity {
         final TextView tvmeniumrate = (TextView) findViewById(R.id.id_rate_medium);
         final TextView tvnumberrate = (TextView) findViewById(R.id.id_number_accout_rate);
 
+        Bitmap bitmap = BitmapFactory.decodeResource(this.getResources(), R.drawable.back);
+        Bitmap circularBitmap = ImageConverter.getRoundedCornerBitmap(bitmap, 100);
 
         Intent intent = getIntent();
         idPlace = intent.getStringExtra("id").toString();
@@ -170,7 +180,7 @@ public class PlaceDetail extends AppCompatActivity {
         });
 
         //Evaluate
-        TextView evaluate = (TextView) findViewById(R.id.id_unfllow);
+        TextView evaluate = (TextView) findViewById(R.id.id_evaluate);
         evaluate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -178,8 +188,45 @@ public class PlaceDetail extends AppCompatActivity {
                 String Authorization = sharedPreferences.getString("Authorization", "");
                 if ("".equals(Authorization)) isLogin();
                 else {
+                    Toast.makeText(getBaseContext(), "da vao day!", Toast.LENGTH_LONG).show();
                     setEvaluate();
                 }
+            }
+        });
+        navigation = findViewById(R.id.navigation);
+        navigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.navigation_home:
+                        // viewPager.setCurrentItem(0);
+
+                        return true;
+                    case R.id.navigation_category:
+                        // viewPager.setCurrentItem(1);
+                        return true;
+                    case R.id.navigation_video:
+                        //   viewPager.setCurrentItem(2);
+                        return true;
+                    case R.id.navigation_favorite:
+                        //   viewPager.setCurrentItem(3);
+                        Intent intentFollow = new Intent(PlaceDetail.this, FollowActivity.class);
+                        startActivity(intentFollow);
+                        return true;
+                    case R.id.navigation_profile:
+                        //  viewPager.setCurrentItem(4);
+                        sharedPreferences = getSharedPreferences("dataLogin", MODE_PRIVATE);
+                        if (!"".equals(sharedPreferences.getString("Au_Token", ""))) {
+                            Intent intent = new Intent(PlaceDetail.this, AccountActivity.class);
+                            intent.putExtra("Au_Token", sharedPreferences.getString("Au_Token", ""));
+                            startActivity(intent);
+                        } else {
+                            Intent intentAccount = new Intent(PlaceDetail.this, LoginActivity.class);
+                            startActivity(intentAccount);
+                        }
+                        return true;
+                }
+                return false;
             }
         });
     }
@@ -267,6 +314,54 @@ public class PlaceDetail extends AppCompatActivity {
     }
 
     public void setEvaluate() {
-
+        Dialog dialog = new Dialog(this);
+        dialog.setTitle("Evaluate");
+        dialog.setContentView(R.layout.dialog_star);
+        final ImageView star1 = (ImageView) dialog.findViewById(R.id.rate_star1);
+        final ImageView star2 = (ImageView) dialog.findViewById(R.id.rate_star2);
+        final ImageView star3 = (ImageView) dialog.findViewById(R.id.rate_star3);
+        final ImageView star4 = (ImageView) dialog.findViewById(R.id.rate_star4);
+        final ImageView star5 = (ImageView) dialog.findViewById(R.id.rate_star5);
+        star1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                star1.setImageResource(R.drawable.ic_star_light_);
+            }
+        });
+        star2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                star1.setImageResource(R.drawable.ic_star_light_);
+                star2.setImageResource(R.drawable.ic_star_light_);
+            }
+        });
+        star3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                star1.setImageResource(R.drawable.ic_star_light_);
+                star2.setImageResource(R.drawable.ic_star_light_);
+                star3.setImageResource(R.drawable.ic_star_light_);
+            }
+        });
+        star4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                star1.setImageResource(R.drawable.ic_star_light_);
+                star2.setImageResource(R.drawable.ic_star_light_);
+                star3.setImageResource(R.drawable.ic_star_light_);
+                star4.setImageResource(R.drawable.ic_star_light_);
+            }
+        });
+        star5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                star1.setImageResource(R.drawable.ic_star_light_);
+                star2.setImageResource(R.drawable.ic_star_light_);
+                star3.setImageResource(R.drawable.ic_star_light_);
+                star4.setImageResource(R.drawable.ic_star_light_);
+                star5.setImageResource(R.drawable.ic_star_light_);
+            }
+        });
+        dialog.show();
     }
 }

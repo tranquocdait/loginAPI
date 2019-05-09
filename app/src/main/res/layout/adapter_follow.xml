@@ -6,13 +6,15 @@
     android:layout_height="wrap_content"
     android:orientation="horizontal">
 
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/id_image_avatar_follow"
-        android:layout_width="80dp"
-        android:layout_height="120dp"
+        android:layout_width="120dp"
+        android:layout_height="80dp"
+        android:layout_below="@+id/imageView"
+        android:layout_centerHorizontal="true"
         android:layout_margin="5dp"
-        android:layout_weight="1"
-        tools:srcCompat="@tools:sample/avatars" />
+        android:layout_marginTop="24dp"
+        android:layout_weight="1" />
 
     <LinearLayout
         android:layout_width="wrap_content"

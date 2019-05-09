@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">We Travel</string>
+    <string name="app_name">WiTravel</string>
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
@@ -10,8 +10,8 @@
     <!--bottom navigation title-->
     <string name="title_nav_home">Home</string>
     <string name="title_nav_category">Category</string>
-    <string name="title_nav_video">Video</string>
-    <string name="title_nav_favorite">Favorite</string>
+    <string name="title_nav_video">Post</string>
+    <string name="title_nav_favorite">Following</string>
     <string name="title_nav_profile">Profile</string>
 
     <!--profile-->

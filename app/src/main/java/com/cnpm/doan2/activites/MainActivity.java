@@ -3,6 +3,7 @@ package com.cnpm.doan2.activites;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -16,6 +17,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.cnpm.doan2.R;
 import com.cnpm.doan2.config.AdapterPlace;
@@ -40,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
     private Toolbar toolbar;
     public String Au_Token = null;
     private BottomNavigationView navigation;
+    private SharedPreferences sharedPreferences;
 //    MyApplication myApplication;
 
     @Override
@@ -69,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
                             arrayListUrlImage.add(image.getUrl());
                         }
                         Intent intent = new Intent(MainActivity.this, PlaceDetail.class);
-                        intent.putExtra("id",placeList.get(position).getId().toString());
+                        intent.putExtra("id", placeList.get(position).getId().toString());
                         intent.putExtra("namePlace", placeList.get(position).getNamePlace());
                         intent.putExtra("address", placeList.get(position).getAddress());
                         intent.putExtra("about", placeList.get(position).getAbout());
@@ -81,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<List<Place>> call, Throwable t) {
-                textViewResult.setText(t.getMessage());
+                Toast.makeText(getBaseContext(), "Interrupt connection!", Toast.LENGTH_LONG).show();
             }
         });
         navigation = findViewById(R.id.navigation);
@@ -106,8 +109,15 @@ public class MainActivity extends AppCompatActivity {
                         return true;
                     case R.id.navigation_profile:
                         //  viewPager.setCurrentItem(4);
+                        sharedPreferences = getSharedPreferences("dataLogin", MODE_PRIVATE);
+                        if (!"".equals(sharedPreferences.getString("Au_Token", ""))) {
+                            Intent intent = new Intent(MainActivity.this, AccountActivity.class);
+                            intent.putExtra("Au_Token", sharedPreferences.getString("Au_Token", ""));
+                            startActivity(intent);
+                        } else {
                             Intent intentAccount = new Intent(MainActivity.this, LoginActivity.class);
                             startActivity(intentAccount);
+                        }
                         return true;
                 }
                 return false;
@@ -141,8 +151,7 @@ public class MainActivity extends AppCompatActivity {
         } else if (id == R.id.action_exit) {
             alertExit();
             return true;
-        }
-        else if (id == R.id.action_account) {
+        } else if (id == R.id.action_account) {
             return true;
         }
 

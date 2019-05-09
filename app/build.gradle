@@ -42,4 +42,6 @@ dependencies {
 
 //    implementation 'com.onesignal:OneSignal:3.10.5'
 //    implementation 'com.android.support:multidex:1.0.3'
+    //bor image
+    compile 'de.hdodenhof:circleimageview:1.2.1'
 }

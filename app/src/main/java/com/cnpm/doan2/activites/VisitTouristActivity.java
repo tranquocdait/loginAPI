@@ -2,6 +2,8 @@ package com.cnpm.doan2.activites;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ImageView;
@@ -11,6 +13,7 @@ import android.widget.Toast;
 
 import com.cnpm.doan2.R;
 import com.cnpm.doan2.config.AdapterPost;
+import com.cnpm.doan2.config.ImageConverter;
 import com.cnpm.doan2.models.Follow;
 import com.cnpm.doan2.models.Post;
 import com.cnpm.doan2.reponse.StatusPost;
@@ -39,13 +42,16 @@ public class VisitTouristActivity extends AppCompatActivity {
 
         Intent intent=getIntent();
         String idTourist= intent.getStringExtra("idTourist").toString();
-        String fullnameTourist=intent.getStringExtra("fullnameTourist");
-        String urlAvatar=intent.getStringExtra("avatarTourist");
+        final String fullnameTourist=intent.getStringExtra("fullnameTourist");
+        final String urlAvatar=intent.getStringExtra("avatarTourist");
 
         avatar=(ImageView)findViewById(R.id.id_avatar_tourist);
         Picasso.with(getApplicationContext()).load(urlAvatar).into(avatar);
         fullname=(TextView)findViewById(R.id.id_fullname);
         fullname.setText(fullnameTourist);
+
+        Bitmap bitmap = BitmapFactory.decodeResource(this.getResources(), R.drawable.back);
+        Bitmap circularBitmap = ImageConverter.getRoundedCornerBitmap(bitmap, 100);
 
         Call<StatusPost> call = RetrofitClient
                 .getInstance().getPosttApi().getListPost(idTourist);
@@ -55,7 +61,7 @@ public class VisitTouristActivity extends AppCompatActivity {
                 if (!response.isSuccessful()) return;
                 if ("success".equals(response.body().getStatus())) {
                     final ArrayList<Post> postList = (ArrayList) response.body().getData();
-                    adapterPost = new AdapterPost(VisitTouristActivity.this, postList);
+                    adapterPost = new AdapterPost(VisitTouristActivity.this, postList,fullnameTourist,urlAvatar);
                     listView.setAdapter(adapterPost);
                 }
             }

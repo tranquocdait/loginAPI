@@ -1,10 +1,10 @@
 <!--<?xml version="1.0" encoding="utf-8"?>-->
 <!--<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
-    <!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
-    <!--xmlns:tools="http://schemas.android.com/tools"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="match_parent"-->
-    <!--tools:context=".activites.AccountActivity">-->
+<!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
+<!--xmlns:tools="http://schemas.android.com/tools"-->
+<!--android:layout_width="match_parent"-->
+<!--android:layout_height="match_parent"-->
+<!--tools:context=".activites.AccountActivity">-->
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/main_content"
@@ -28,11 +28,15 @@
                 android:layout_height="match_parent"
                 android:orientation="horizontal">
 
-                <ImageView
+
+                <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/id_avatar_tourist"
                     android:layout_width="120dp"
                     android:layout_height="80dp"
+                    android:layout_below="@+id/imageView"
+                    android:layout_centerHorizontal="true"
                     android:layout_margin="5dp"
+                    android:layout_marginTop="24dp"
                     android:layout_weight="1" />
 
                 <LinearLayout
@@ -86,11 +90,11 @@
         </LinearLayout>
 
         <LinearLayout
-        android:id="@+id/id_edit"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:orientation="horizontal">
+            android:id="@+id/id_edit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/id_edit_account"
@@ -100,7 +104,7 @@
                 android:layout_weight="1"
                 android:text="Edit account"
                 android:textSize="18sp" />
-    </LinearLayout>
+        </LinearLayout>
 
         <LinearLayout
             android:id="@+id/id_logout"
@@ -136,4 +140,4 @@
         tools:layout_editor_absoluteX="171dp" />
 
 </RelativeLayout>
-<!--</android.support.constraint.ConstraintLayout>-->
+    <!--</android.support.constraint.ConstraintLayout>-->
