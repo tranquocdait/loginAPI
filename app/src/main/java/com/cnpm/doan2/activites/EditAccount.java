@@ -25,8 +25,8 @@ public class EditAccount extends AppCompatActivity {
                 switch (item.getItemId()) {
                     case R.id.navigation_home:
                         // viewPager.setCurrentItem(0);
-                        Intent intentFollow = new Intent(EditAccount.this, MainActivity.class);
-                        startActivity(intentFollow);
+                        Intent intent = new Intent(EditAccount.this, MainActivity.class);
+                        startActivity(intent);
                         return true;
                     case R.id.navigation_category:
                         // viewPager.setCurrentItem(1);
@@ -35,19 +35,11 @@ public class EditAccount extends AppCompatActivity {
                         //   viewPager.setCurrentItem(2);
                         return true;
                     case R.id.navigation_favorite:
-                        //   viewPager.setCurrentItem(3);
+                        Intent intent1=new Intent(EditAccount.this,FollowActivity.class);
+                        startActivity(intent1);
                         return true;
                     case R.id.navigation_profile:
                         //  viewPager.setCurrentItem(4);
-                        sharedPreferences = getSharedPreferences("dataLogin", MODE_PRIVATE);
-                        if (!"".equals(sharedPreferences.getString("Au_Token", ""))) {
-                            Intent intent = new Intent(EditAccount.this, AccountActivity.class);
-                            intent.putExtra("Au_Token", sharedPreferences.getString("Au_Token", ""));
-                            startActivity(intent);
-                        } else {
-                            Intent intentAccount = new Intent(EditAccount.this, LoginActivity.class);
-                            startActivity(intentAccount);
-                        }
                         return true;
                 }
                 return false;

@@ -5,11 +5,13 @@ import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Build;
+import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.Html;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -141,6 +143,43 @@ public class PostDetail extends AppCompatActivity {
                 });
             }
         });
+        navigation = findViewById(R.id.navigation);
+        navigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.navigation_home:
+                        // viewPager.setCurrentItem(0);
 
+                        Intent intentHome= new Intent(PostDetail.this, FollowActivity.class);
+                        startActivity(intentHome);
+                        return true;
+                    case R.id.navigation_category:
+                        // viewPager.setCurrentItem(1);
+                        return true;
+                    case R.id.navigation_video:
+                        //   viewPager.setCurrentItem(2);
+                        return true;
+                    case R.id.navigation_favorite:
+                        //   viewPager.setCurrentItem(3);
+                        Intent intentFollow = new Intent(PostDetail.this, FollowActivity.class);
+                        startActivity(intentFollow);
+                        return true;
+                    case R.id.navigation_profile:
+                        //  viewPager.setCurrentItem(4);
+                        sharedPreferences = getSharedPreferences("dataLogin", MODE_PRIVATE);
+                        if (!"".equals(sharedPreferences.getString("Au_Token", ""))) {
+                            Intent intent = new Intent(PostDetail.this, AccountActivity.class);
+                            intent.putExtra("Au_Token", sharedPreferences.getString("Au_Token", ""));
+                            startActivity(intent);
+                        } else {
+                            Intent intentAccount = new Intent(PostDetail.this, LoginActivity.class);
+                            startActivity(intentAccount);
+                        }
+                        return true;
+                }
+                return false;
+            }
+        });
     }
 }

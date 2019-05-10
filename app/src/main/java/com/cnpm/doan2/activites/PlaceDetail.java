@@ -200,7 +200,8 @@ public class PlaceDetail extends AppCompatActivity {
                 switch (item.getItemId()) {
                     case R.id.navigation_home:
                         // viewPager.setCurrentItem(0);
-
+                        Intent intentHome = new Intent(PlaceDetail.this, MainActivity.class);
+                        startActivity(intentHome);
                         return true;
                     case R.id.navigation_category:
                         // viewPager.setCurrentItem(1);
