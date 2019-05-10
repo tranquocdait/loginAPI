@@ -150,12 +150,8 @@ public class PostDetail extends AppCompatActivity {
                 switch (item.getItemId()) {
                     case R.id.navigation_home:
                         // viewPager.setCurrentItem(0);
-
-                        Intent intentHome= new Intent(PostDetail.this, FollowActivity.class);
+                        Intent intentHome= new Intent(PostDetail.this, HomeActivity.class);
                         startActivity(intentHome);
-                        return true;
-                    case R.id.navigation_video:
-                        //   viewPager.setCurrentItem(2);
                         return true;
                     case R.id.navigation_favorite:
                         //   viewPager.setCurrentItem(3);

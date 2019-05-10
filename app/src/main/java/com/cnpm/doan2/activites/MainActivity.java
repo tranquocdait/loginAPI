@@ -35,7 +35,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener{
     private TextView textViewResult;
     private ListView listView;
     private AdapterPlace adapterPlace;
@@ -88,47 +88,11 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         navigation = findViewById(R.id.navigation);
-        navigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-               // navigation.setSelectedItemId(item.getItemId());
+        Menu menu = navigation.getMenu();
+        MenuItem menuItem = menu.getItem(0);
+        menuItem.setCheckable(true);
+        navigation.setOnNavigationItemSelectedListener(this);
 
-                mMenuId = item.getItemId();
-                for (int i = 0; i < navigation.getMenu().size(); i++) {
-                    MenuItem menuItem = navigation.getMenu().getItem(i);
-                    boolean isChecked = menuItem.getItemId() == item.getItemId();
-                    menuItem.setChecked(isChecked);
-                }
-
-                switch (item.getItemId()) {
-                    case R.id.navigation_home:
-                        // viewPager.setCurrentItem(0);
-                        return true;
-                    case R.id.navigation_video:
-                        //   viewPager.setCurrentItem(2);
-
-                        return true;
-                    case R.id.navigation_favorite:
-                        //   viewPager.setCurrentItem(3);
-                        Intent intentFollow = new Intent(MainActivity.this, FollowActivity.class);
-                        startActivity(intentFollow);
-                        return true;
-                    case R.id.navigation_profile:
-                        //  viewPager.setCurrentItem(4);
-                        sharedPreferences = getSharedPreferences("dataLogin", MODE_PRIVATE);
-                        if (!"".equals(sharedPreferences.getString("Au_Token", ""))) {
-                            Intent intent = new Intent(MainActivity.this, AccountActivity.class);
-                            intent.putExtra("Au_Token", sharedPreferences.getString("Au_Token", ""));
-                            startActivity(intent);
-                        } else {
-                            Intent intentAccount = new Intent(MainActivity.this, LoginActivity.class);
-                            startActivity(intentAccount);
-                        }
-                        return true;
-                }
-                return false;
-            }
-        });
     }
 
     @Override
@@ -188,5 +152,37 @@ public class MainActivity extends AppCompatActivity {
     public void loginView() {
         Intent intent = new Intent(MainActivity.this, LoginActivity.class);
         startActivity(intent);
+    }
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        mMenuId = item.getItemId();
+        for (int i = 0; i < navigation.getMenu().size(); i++) {
+            MenuItem menuItem = navigation.getMenu().getItem(i);
+            boolean isChecked = menuItem.getItemId() == item.getItemId();
+            menuItem.setChecked(isChecked);
+        }
+
+        switch (item.getItemId()) {
+            case R.id.navigation_home:
+                // viewPager.setCurrentItem(0);
+                break;
+            case R.id.navigation_favorite:
+                Intent intent1 = new Intent(MainActivity.this, FollowActivity.class);
+                startActivity(intent1);
+                break;
+            case R.id.navigation_profile:
+                //  viewPager.setCurrentItem(4);
+                sharedPreferences = getSharedPreferences("dataLogin", MODE_PRIVATE);
+                if (!"".equals(sharedPreferences.getString("Au_Token", ""))) {
+                    Intent intentq = new Intent(MainActivity.this, AccountActivity.class);
+                    intentq.putExtra("Au_Token", sharedPreferences.getString("Au_Token", ""));
+                    startActivity(intentq);
+                } else {
+                    Intent intentAccount = new Intent(MainActivity.this, LoginActivity.class);
+                    startActivity(intentAccount);
+                }
+                break;
+        }
+        return true;
     }
 }

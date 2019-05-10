@@ -56,7 +56,6 @@ public class PlaceDetail extends AppCompatActivity {
         TextView tvaddress = (TextView) findViewById(R.id.id_address_detail);
         TextView tvabout = (TextView) findViewById(R.id.id_aboutPlace_detail);
         ImageView tvimage = (ImageView) findViewById(R.id.id_imagePlace_detail);
-        ImageView tvimageback = (ImageView) findViewById(R.id.id_back);
         final TextView tvmeniumrate = (TextView) findViewById(R.id.id_rate_medium);
         final TextView tvnumberrate = (TextView) findViewById(R.id.id_number_accout_rate);
 
@@ -193,9 +192,6 @@ public class PlaceDetail extends AppCompatActivity {
                         // viewPager.setCurrentItem(0);
                         Intent intentHome = new Intent(PlaceDetail.this, MainActivity.class);
                         startActivity(intentHome);
-                        return true;
-                    case R.id.navigation_video:
-                        //   viewPager.setCurrentItem(2);
                         return true;
                     case R.id.navigation_favorite:
                         //   viewPager.setCurrentItem(3);

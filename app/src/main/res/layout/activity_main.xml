@@ -41,7 +41,7 @@
         app:itemBackground="@color/colorPrimary"
         app:itemTextColor="@color/colorWhite"
         app:itemIconTint="@color/colorWhite"
-        app:menu="@menu/navigation" />
+        app:menu="@menu/navigation"/>
 
 <!--</android.support.constraint.ConstraintLayout>-->
 </RelativeLayout>

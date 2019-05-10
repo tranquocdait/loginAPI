@@ -109,9 +109,6 @@ public class MyPostActivity extends AppCompatActivity {
                         Intent intent = new Intent(MyPostActivity.this, MainActivity.class);
                         startActivity(intent);
                         return true;
-                    case R.id.navigation_video:
-                        //   viewPager.setCurrentItem(2);
-                        return true;
                     case R.id.navigation_favorite:
                         Intent intent1=new Intent(MyPostActivity.this,FollowActivity.class);
                         startActivity(intent1);

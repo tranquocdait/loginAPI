@@ -8,6 +8,7 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -25,7 +26,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class AccountActivity extends AppCompatActivity {
+public class AccountActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener{
     Tourist tourist;
     String status;
     ImageView imageView;
@@ -89,44 +90,18 @@ public class AccountActivity extends AppCompatActivity {
 
 
         navigation = findViewById(R.id.navigation);
-        navigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                mMenuId = item.getItemId();
-                for (int i = 0; i < navigation.getMenu().size(); i++) {
-                    MenuItem menuItem = navigation.getMenu().getItem(i);
-                    boolean isChecked = menuItem.getItemId() == item.getItemId();
-                    menuItem.setChecked(isChecked);
-                }
+        Menu menu = navigation.getMenu();
+        MenuItem menuItem = menu.getItem(2);
+        menuItem.setCheckable(true);
+        navigation.setOnNavigationItemSelectedListener(this);
+        navigation.getMenu().findItem(R.id.navigation_home).setCheckable(true);
 
-                switch (item.getItemId()) {
-                    case R.id.navigation_home:
-                        // viewPager.setCurrentItem(0);
-                        Intent intent = new Intent(AccountActivity.this, MainActivity.class);
-                        startActivity(intent);
-                        return true;
-                    case R.id.navigation_video:
-                        //   viewPager.setCurrentItem(2);
-                        return true;
-                    case R.id.navigation_favorite:
-                        Intent intent1 = new Intent(AccountActivity.this, FollowActivity.class);
-                        startActivity(intent1);
-                        return true;
-                    case R.id.navigation_profile:
-                        //  viewPager.setCurrentItem(4);
-                        return true;
-                }
-                return false;
-            }
-        });
-        navigation.getMenu().findItem(R.id.navigation_profile).setCheckable(true);
         edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(AccountActivity.this, EditAccount.class);
                 intent.putExtra("id", tourist.getId().toString());
                 intent.putExtra("fullname", tourist.getFullName());
-                // intent.putExtra("fullname",tourist.getFullName());
                 startActivity(intent);
             }
         });
@@ -150,5 +125,31 @@ public class AccountActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        mMenuId = item.getItemId();
+        for (int i = 0; i < navigation.getMenu().size(); i++) {
+            MenuItem menuItem = navigation.getMenu().getItem(i);
+            boolean isChecked = menuItem.getItemId() == item.getItemId();
+            menuItem.setChecked(isChecked);
+        }
+
+        switch (item.getItemId()) {
+            case R.id.navigation_home:
+                // viewPager.setCurrentItem(0);
+                Intent intent = new Intent(AccountActivity.this, MainActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.navigation_favorite:
+                Intent intent1 = new Intent(AccountActivity.this, FollowActivity.class);
+                startActivity(intent1);
+                break;
+            case R.id.navigation_profile:
+                //  viewPager.setCurrentItem(4);
+                break;
+        }
+        return true;
     }
 }

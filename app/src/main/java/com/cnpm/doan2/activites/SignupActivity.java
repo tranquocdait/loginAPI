@@ -65,9 +65,6 @@ public class SignupActivity extends AppCompatActivity {
                         Intent intent = new Intent(SignupActivity.this, MainActivity.class);
                         startActivity(intent);
                         return true;
-                    case R.id.navigation_video:
-                        //   viewPager.setCurrentItem(2);
-                        return true;
                     case R.id.navigation_favorite:
                         //   viewPager.setCurrentItem(3);
                         Intent intent1 = new Intent(SignupActivity.this, FollowActivity.class);
@@ -165,12 +162,8 @@ public class SignupActivity extends AppCompatActivity {
                 switch (item.getItemId()) {
                     case R.id.navigation_home:
                         // viewPager.setCurrentItem(0);
-
                         Intent intentHome= new Intent(SignupActivity.this, FollowActivity.class);
                         startActivity(intentHome);
-                        return true;
-                    case R.id.navigation_video:
-                        //   viewPager.setCurrentItem(2);
                         return true;
                     case R.id.navigation_favorite:
                         //   viewPager.setCurrentItem(3);

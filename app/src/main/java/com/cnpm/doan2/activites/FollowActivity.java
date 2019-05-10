@@ -9,6 +9,7 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -104,17 +105,17 @@ public class FollowActivity extends AppCompatActivity {
             }
         });
         navigation = findViewById(R.id.navigation);
+        Menu menu = navigation.getMenu();
+        MenuItem menuItem = menu.getItem(1);
+        menuItem.setCheckable(true);
         navigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.navigation_home:
                         // viewPager.setCurrentItem(0);
-                        Intent intentFollow = new Intent(FollowActivity.this, MainActivity.class);
-                        startActivity(intentFollow);
-                        return true;
-                    case R.id.navigation_video:
-                        //   viewPager.setCurrentItem(2);
+                        Intent intentHome= new Intent(FollowActivity.this, MainActivity.class);
+                        startActivity(intentHome);
                         return true;
                     case R.id.navigation_favorite:
                         //   viewPager.setCurrentItem(3);

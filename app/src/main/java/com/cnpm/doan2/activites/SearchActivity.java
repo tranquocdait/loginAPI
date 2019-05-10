@@ -110,14 +110,13 @@ public class SearchActivity extends AppCompatActivity {
                 switch (item.getItemId()) {
                     case R.id.navigation_home:
                         // viewPager.setCurrentItem(0);
-                        Intent intentFollow = new Intent(SearchActivity.this, MainActivity.class);
-                        startActivity(intentFollow);
-                        return true;
-                    case R.id.navigation_video:
-                        //   viewPager.setCurrentItem(2);
+                        Intent intentHome = new Intent(SearchActivity.this, MainActivity.class);
+                        startActivity(intentHome);
                         return true;
                     case R.id.navigation_favorite:
                         //   viewPager.setCurrentItem(3);
+                        Intent intentFollow = new Intent(SearchActivity.this, FollowActivity.class);
+                        startActivity(intentFollow);
                         return true;
                     case R.id.navigation_profile:
                         //  viewPager.setCurrentItem(4);

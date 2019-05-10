@@ -98,7 +98,7 @@
                 android:layout_marginTop="23dp"
                 android:padding="5dp"
                 android:layout_weight="1"
-                android:src="@drawable/ic_camera"/>
+                android:src="@drawable/ic_my_post"/>
 
             <LinearLayout
                 android:id="@+id/id_post"
@@ -145,7 +145,7 @@
                 android:layout_below="@+id/imageView"
                 android:layout_margin="5dp"
                 android:layout_marginTop="24dp"
-                android:src="@drawable/ic_drawer_more"
+                android:src="@drawable/ic_edit"
                 android:layout_weight="1" />
 
             <LinearLayout
@@ -196,7 +196,7 @@
                 android:layout_marginTop="23dp"
                 android:padding="5dp"
                 android:layout_weight="1"
-                android:src="@drawable/ic_edit"/>
+                android:src="@drawable/ic_exit_to_app_black_24dp"/>
 
             <LinearLayout
                 android:id="@+id/id_logout"
