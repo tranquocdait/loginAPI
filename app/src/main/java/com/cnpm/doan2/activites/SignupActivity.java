@@ -65,9 +65,6 @@ public class SignupActivity extends AppCompatActivity {
                         Intent intent = new Intent(SignupActivity.this, MainActivity.class);
                         startActivity(intent);
                         return true;
-                    case R.id.navigation_category:
-                        // viewPager.setCurrentItem(1);
-                        return true;
                     case R.id.navigation_video:
                         //   viewPager.setCurrentItem(2);
                         return true;
@@ -172,9 +169,6 @@ public class SignupActivity extends AppCompatActivity {
                         Intent intentHome= new Intent(SignupActivity.this, FollowActivity.class);
                         startActivity(intentHome);
                         return true;
-                    case R.id.navigation_category:
-                        // viewPager.setCurrentItem(1);
-                        return true;
                     case R.id.navigation_video:
                         //   viewPager.setCurrentItem(2);
                         return true;
@@ -205,7 +199,9 @@ public class SignupActivity extends AppCompatActivity {
     public void onSignupSuccess() {
         _signupButton.setEnabled(true);
         setResult(RESULT_OK, null);
-        finish();
+        Intent intent=new Intent(SignupActivity.this,LoginActivity.class);
+        startActivity(intent);
+        //finish();
     }
 
     public void onSignupFailed() {

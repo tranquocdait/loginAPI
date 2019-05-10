@@ -113,9 +113,6 @@ public class SearchActivity extends AppCompatActivity {
                         Intent intentFollow = new Intent(SearchActivity.this, MainActivity.class);
                         startActivity(intentFollow);
                         return true;
-                    case R.id.navigation_category:
-                        // viewPager.setCurrentItem(1);
-                        return true;
                     case R.id.navigation_video:
                         //   viewPager.setCurrentItem(2);
                         return true;

@@ -28,9 +28,6 @@ public class EditAccount extends AppCompatActivity {
                         Intent intent = new Intent(EditAccount.this, MainActivity.class);
                         startActivity(intent);
                         return true;
-                    case R.id.navigation_category:
-                        // viewPager.setCurrentItem(1);
-                        return true;
                     case R.id.navigation_video:
                         //   viewPager.setCurrentItem(2);
                         return true;

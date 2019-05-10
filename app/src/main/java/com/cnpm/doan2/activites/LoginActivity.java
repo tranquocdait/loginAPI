@@ -68,9 +68,6 @@ public class LoginActivity extends AppCompatActivity {
                         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                         startActivity(intent);
                         return true;
-                    case R.id.navigation_category:
-                        // viewPager.setCurrentItem(1);
-                        return true;
                     case R.id.navigation_video:
                         //   viewPager.setCurrentItem(2);
                         return true;
@@ -196,10 +193,9 @@ public class LoginActivity extends AppCompatActivity {
 
     public void onLoginSuccess() {
         _loginButton.setEnabled(true);
-//        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-//        //   intent.putExtra("Au_Token", Au_Token);
-//        startActivity(intent);
-             this.finish();
+        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+        //   intent.putExtra("Au_Token", Au_Token);
+        startActivity(intent);
     }
 
     public void onLoginFailed() {

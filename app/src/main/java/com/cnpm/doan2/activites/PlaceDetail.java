@@ -134,15 +134,6 @@ public class PlaceDetail extends AppCompatActivity {
             }
         });
 
-        tvimageback.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-//                Intent intent=new Intent(PlaceDetail.this,MainActivity.class);
-//                startActivity(intent);
-                finish();
-            }
-        });
-
         //send comment
         ImageView sendComment = (ImageView) findViewById(R.id.id_send);
         sendComment.setOnClickListener(new View.OnClickListener() {
@@ -202,9 +193,6 @@ public class PlaceDetail extends AppCompatActivity {
                         // viewPager.setCurrentItem(0);
                         Intent intentHome = new Intent(PlaceDetail.this, MainActivity.class);
                         startActivity(intentHome);
-                        return true;
-                    case R.id.navigation_category:
-                        // viewPager.setCurrentItem(1);
                         return true;
                     case R.id.navigation_video:
                         //   viewPager.setCurrentItem(2);

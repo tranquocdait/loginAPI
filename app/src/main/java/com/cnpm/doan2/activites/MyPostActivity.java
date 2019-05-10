@@ -69,7 +69,7 @@ public class MyPostActivity extends AppCompatActivity {
         });
 
         Call<StatusPost> call = RetrofitClient
-                .getInstance().getPosttApi().getListPost(touristId);
+                .getInstance().getPostApi().getListPost(touristId);
         call.enqueue(new Callback<StatusPost>() {
             @Override
             public void onResponse(Call<StatusPost> call, Response<StatusPost> responseee) {
@@ -108,9 +108,6 @@ public class MyPostActivity extends AppCompatActivity {
                         // viewPager.setCurrentItem(0);
                         Intent intent = new Intent(MyPostActivity.this, MainActivity.class);
                         startActivity(intent);
-                        return true;
-                    case R.id.navigation_category:
-                        // viewPager.setCurrentItem(1);
                         return true;
                     case R.id.navigation_video:
                         //   viewPager.setCurrentItem(2);

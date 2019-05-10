@@ -33,7 +33,7 @@ public class AccountActivity extends AppCompatActivity {
     TextView gender;
     TextView nationality;
     String idAccount;
-
+    private int mMenuId;
     private TextView post;
     private TextView edit;
     private TextView logout;
@@ -58,7 +58,7 @@ public class AccountActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         final String id = intent.getStringExtra("Au_Token");
-        idAccount=id;
+        idAccount = id;
         Call<StatusTourist> call = RetrofitClient
                 .getInstance().getTouristApi().getTourist(id);
         call.enqueue(new Callback<StatusTourist>() {
@@ -92,20 +92,24 @@ public class AccountActivity extends AppCompatActivity {
         navigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                mMenuId = item.getItemId();
+                for (int i = 0; i < navigation.getMenu().size(); i++) {
+                    MenuItem menuItem = navigation.getMenu().getItem(i);
+                    boolean isChecked = menuItem.getItemId() == item.getItemId();
+                    menuItem.setChecked(isChecked);
+                }
+
                 switch (item.getItemId()) {
                     case R.id.navigation_home:
                         // viewPager.setCurrentItem(0);
                         Intent intent = new Intent(AccountActivity.this, MainActivity.class);
                         startActivity(intent);
                         return true;
-                    case R.id.navigation_category:
-                        // viewPager.setCurrentItem(1);
-                        return true;
                     case R.id.navigation_video:
                         //   viewPager.setCurrentItem(2);
                         return true;
                     case R.id.navigation_favorite:
-                        Intent intent1=new Intent(AccountActivity.this,FollowActivity.class);
+                        Intent intent1 = new Intent(AccountActivity.this, FollowActivity.class);
                         startActivity(intent1);
                         return true;
                     case R.id.navigation_profile:
@@ -115,6 +119,7 @@ public class AccountActivity extends AppCompatActivity {
                 return false;
             }
         });
+        navigation.getMenu().findItem(R.id.navigation_profile).setCheckable(true);
         edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

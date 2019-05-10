@@ -43,16 +43,14 @@ public class MainActivity extends AppCompatActivity {
     public String Au_Token = null;
     private BottomNavigationView navigation;
     private SharedPreferences sharedPreferences;
+    private int mMenuId;
 //    MyApplication myApplication;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-//        toolbar = findViewById(R.id.toolbar);
-//        setSupportActionBar(toolbar);
-//        getSupportActionBar().setDisplayShowHomeEnabled(true);
-//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         listView = (ListView) findViewById(R.id.id_list);
         Call<List<Place>> call = RetrofitClient
                 .getInstance().getPlaceApi().getListPlace();
@@ -93,25 +91,22 @@ public class MainActivity extends AppCompatActivity {
         navigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+               // navigation.setSelectedItemId(item.getItemId());
+
+                mMenuId = item.getItemId();
+                for (int i = 0; i < navigation.getMenu().size(); i++) {
+                    MenuItem menuItem = navigation.getMenu().getItem(i);
+                    boolean isChecked = menuItem.getItemId() == item.getItemId();
+                    menuItem.setChecked(isChecked);
+                }
+
                 switch (item.getItemId()) {
                     case R.id.navigation_home:
                         // viewPager.setCurrentItem(0);
-
-                        return true;
-                    case R.id.navigation_category:
-                        // viewPager.setCurrentItem(1);
                         return true;
                     case R.id.navigation_video:
                         //   viewPager.setCurrentItem(2);
-                        sharedPreferences = getSharedPreferences("dataLogin", MODE_PRIVATE);
-                        if (!"".equals(sharedPreferences.getString("Au_Token", ""))) {
-                            Intent intent = new Intent(MainActivity.this, HomeActivity.class);
-                            intent.putExtra("Au_Token", sharedPreferences.getString("Au_Token", ""));
-                            startActivity(intent);
-                        } else {
-                            Intent intentAccount = new Intent(MainActivity.this, LoginActivity.class);
-                            startActivity(intentAccount);
-                        }
+
                         return true;
                     case R.id.navigation_favorite:
                         //   viewPager.setCurrentItem(3);
