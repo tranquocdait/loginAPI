@@ -56,7 +56,7 @@ public class AdapterPost extends ArrayAdapter<Post> {
                 tvContent.setText(Html.fromHtml(post.getContent()));
             }
            //tvContent.setText(post.getContent());
-            tvNumberLike.setText(post.getLikes().length+" likes");
+            tvNumberLike.setText(post.getLikes().size()+" likes");
             List<Image> imageList=post.getImages();
             Picasso.with(getContext()).load(imageList.get(0).getUrl()).into(imAvatar);
         }

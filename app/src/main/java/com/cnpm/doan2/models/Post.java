@@ -35,12 +35,12 @@ public class Post {
 
     @SerializedName("likes")
     @Expose
-    private int[] likes;
+    private List<Like> likes;
 
     public Post() {
     }
 
-    public Post(Integer id, String content, List<Image> images, Place place, Tourist tourist, int[] createdAt, int[] updatedAt, int[] likes) {
+    public Post(Integer id, String content, List<Image> images, Place place, Tourist tourist, int[] createdAt, int[] updatedAt, List<Like> likes) {
         this.id = id;
         this.content = content;
         this.images = images;
@@ -107,11 +107,11 @@ public class Post {
         this.updatedAt = updatedAt;
     }
 
-    public int[] getLikes() {
+    public List<Like> getLikes() {
         return likes;
     }
 
-    public void setLikes(int[] likes) {
+    public void setLikes(List<Like> likes) {
         this.likes = likes;
     }
 }

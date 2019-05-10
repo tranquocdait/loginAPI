@@ -2,6 +2,7 @@ package com.cnpm.doan2.service;
 
 import android.util.Base64;
 
+import com.cnpm.doan2.models.CommentPost;
 import com.cnpm.doan2.models.Place;
 
 import java.io.IOException;
@@ -50,6 +51,10 @@ public class RetrofitClient {
 
     public CommentPlaceService getCommentPlaceApi() {
         return retrofit.create(CommentPlaceService.class);
+    }
+
+    public CommentPostService getCommentPostApi() {
+        return retrofit.create(CommentPostService.class);
     }
 
     public RatePlaceService getRatePlaceApi() {
