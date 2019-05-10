@@ -6,6 +6,8 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -63,6 +65,20 @@ public class VisitTouristActivity extends AppCompatActivity {
                     final ArrayList<Post> postList = (ArrayList) response.body().getData();
                     adapterPost = new AdapterPost(VisitTouristActivity.this, postList,fullnameTourist,urlAvatar);
                     listView.setAdapter(adapterPost);
+
+                    listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                            Intent intent=new Intent(VisitTouristActivity.this,PostDetail.class);
+                            intent.putExtra("idPost",postList.get(position).getId().toString());
+                            intent.putExtra("fullname",fullnameTourist);
+                            intent.putExtra("urlAvatar",urlAvatar);
+                            intent.putExtra("urlPost",postList.get(position).getImages().get(0).getUrl());
+                            intent.putExtra("about",postList.get(position).getContent());
+                            intent.putExtra("numberLike",postList.get(position).getLikes().size()+"");
+                            startActivity(intent);
+                        }
+                    });
                 }
             }
 
