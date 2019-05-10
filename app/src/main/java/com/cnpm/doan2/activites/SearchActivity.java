@@ -20,20 +20,20 @@ import android.widget.Toast;
 import com.cnpm.doan2.R;
 import com.cnpm.doan2.config.AdapterFollow;
 import com.cnpm.doan2.config.ImageConverter;
-import com.cnpm.doan2.models.Follow;
-import com.cnpm.doan2.models.Image;
 import com.cnpm.doan2.models.Tourist;
 import com.cnpm.doan2.reponse.StatusFollow;
+import com.cnpm.doan2.reponse.StatusSearchTourist;
 import com.cnpm.doan2.reponse.StatusTourist;
 import com.cnpm.doan2.service.RetrofitClient;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class FollowActivity extends AppCompatActivity {
+public class SearchActivity extends AppCompatActivity {
     private ListView listView;
     private AdapterFollow adapterFollow;
     private Toolbar toolbar;
@@ -58,37 +58,37 @@ public class FollowActivity extends AppCompatActivity {
         Bitmap bitmap = BitmapFactory.decodeResource(this.getResources(), R.drawable.back);
         Bitmap circularBitmap = ImageConverter.getRoundedCornerBitmap(bitmap, 100);
 
-        Call<StatusFollow> call = RetrofitClient
-                .getInstance().getFollowtApi().getFollow(touristId);
-        call.enqueue(new Callback<StatusFollow>() {
+        Intent intent = getIntent();
+        String search = intent.getStringExtra("search").toString();
+        Call<List<Tourist>> call = RetrofitClient
+                .getInstance().getTouristApi().getTouristWith(search);
+        call.enqueue(new Callback<List<Tourist>>() {
             @Override
-            public void onResponse(Call<StatusFollow> call, final Response<StatusFollow> response) {
+            public void onResponse(Call<List<Tourist>> call, final Response<List<Tourist>> response) {
                 if (!response.isSuccessful()) {
                     return;
                 }
-                if ("success".equals(response.body().getStatus())) {
-                    touristList=(ArrayList<Tourist>) response.body().getData().getAllFollowings();
+                touristList = (ArrayList<Tourist>) response.body();
 
-                    adapterFollow = new AdapterFollow(FollowActivity.this, touristList);
-                    listView.setAdapter(adapterFollow);
+                adapterFollow = new AdapterFollow(SearchActivity.this, touristList);
+                listView.setAdapter(adapterFollow);
 
-                    listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                        @Override
-                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                            Intent intent=new Intent(FollowActivity.this, VisitTouristActivity.class);
-                            intent.putExtra("idTourist",touristList.get(position).getId().toString());
-                            intent.putExtra("fullnameTourist",touristList.get(position).getFullName());
-                            intent.putExtra("avatarTourist",touristList.get(position).getAvatar().getUrl());
-                            startActivity(intent);
-                          //  Toast.makeText(getBaseContext(), ""+touristList.get(position).getId(), Toast.LENGTH_LONG).show();
-                        }
-                    });
-                }
-
+                listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        Intent intent = new Intent(SearchActivity.this, VisitTouristActivity.class);
+                        intent.putExtra("idTourist", touristList.get(position).getId().toString());
+                        intent.putExtra("fullnameTourist", touristList.get(position).getFullName());
+                        intent.putExtra("avatarTourist", touristList.get(position).getAvatar().getUrl());
+                        startActivity(intent);
+                        //  Toast.makeText(getBaseContext(), ""+touristList.get(position).getId(), Toast.LENGTH_LONG).show();
+                    }
+                });
             }
 
+
             @Override
-            public void onFailure(Call<StatusFollow> call, Throwable t) {
+            public void onFailure(Call<List<Tourist>> call, Throwable t) {
                 Toast.makeText(getBaseContext(), "Interrupt connection!", Toast.LENGTH_LONG).show();
             }
         });
@@ -98,7 +98,7 @@ public class FollowActivity extends AppCompatActivity {
             public void onClick(View v) {
                 etSearch=(EditText)findViewById(R.id.id_search);
                 String search=etSearch.getText().toString();
-                Intent intentSearch=new Intent(FollowActivity.this,SearchActivity.class);
+                Intent intentSearch=new Intent(SearchActivity.this,SearchActivity.class);
                 intentSearch.putExtra("search",search);
                 startActivity(intentSearch);
             }
@@ -110,7 +110,7 @@ public class FollowActivity extends AppCompatActivity {
                 switch (item.getItemId()) {
                     case R.id.navigation_home:
                         // viewPager.setCurrentItem(0);
-                        Intent intentFollow = new Intent(FollowActivity.this, MainActivity.class);
+                        Intent intentFollow = new Intent(SearchActivity.this, MainActivity.class);
                         startActivity(intentFollow);
                         return true;
                     case R.id.navigation_category:
@@ -126,11 +126,11 @@ public class FollowActivity extends AppCompatActivity {
                         //  viewPager.setCurrentItem(4);
                         sharedPreferences = getSharedPreferences("dataLogin", MODE_PRIVATE);
                         if (!"".equals(sharedPreferences.getString("Au_Token", ""))) {
-                            Intent intent = new Intent(FollowActivity.this, AccountActivity.class);
+                            Intent intent = new Intent(SearchActivity.this, AccountActivity.class);
                             intent.putExtra("Au_Token", sharedPreferences.getString("Au_Token", ""));
                             startActivity(intent);
                         } else {
-                            Intent intentAccount = new Intent(FollowActivity.this, LoginActivity.class);
+                            Intent intentAccount = new Intent(SearchActivity.this, LoginActivity.class);
                             startActivity(intentAccount);
                         }
                         return true;

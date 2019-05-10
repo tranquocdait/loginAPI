@@ -34,16 +34,16 @@
                     android:layout_marginBottom="8dp">
 
                     <EditText
-                        android:id="@+id/id_coment_account"
+                        android:id="@+id/id_search"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Posting...." />
+                        android:hint="Searching..." />
                 </android.support.design.widget.TextInputLayout>
 
             </LinearLayout>
 
             <ImageView
-                android:id="@+id/id_send"
+                android:id="@+id/id_search_submit"
                 android:layout_width="70dp"
                 android:layout_height="40dp"
                 android:layout_marginTop="20dp"

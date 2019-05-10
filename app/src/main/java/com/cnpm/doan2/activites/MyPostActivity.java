@@ -9,6 +9,8 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -67,7 +69,7 @@ public class MyPostActivity extends AppCompatActivity {
         });
 
         Call<StatusPost> call = RetrofitClient
-                .getInstance().getPosttApi().getListPost("415");
+                .getInstance().getPosttApi().getListPost(touristId);
         call.enqueue(new Callback<StatusPost>() {
             @Override
             public void onResponse(Call<StatusPost> call, Response<StatusPost> responseee) {
@@ -76,6 +78,20 @@ public class MyPostActivity extends AppCompatActivity {
                     final ArrayList<Post> postList = (ArrayList) responseee.body().getData();
                     adapterPost = new AdapterPost(MyPostActivity.this, postList,fullname,urlAvatar);
                     listView.setAdapter(adapterPost);
+
+                    listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                            Intent intent=new Intent(MyPostActivity.this,PostDetail.class);
+                            intent.putExtra("idPost",postList.get(position).getId().toString());
+                            intent.putExtra("fullname",fullname);
+                            intent.putExtra("urlAvatar",urlAvatar);
+                            intent.putExtra("urlPost",postList.get(position).getImages().get(0).getUrl());
+                            intent.putExtra("about",postList.get(position).getContent());
+                            intent.putExtra("numberLike",postList.get(position).getLikes().size()+"");
+                            startActivity(intent);
+                        }
+                    });
                 }
             }
             @Override
